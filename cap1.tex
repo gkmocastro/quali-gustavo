@@ -45,7 +45,7 @@ Neste cenário, o presente trabalho apresenta uma abordagem baseada em técnicas
 
      
 	    
-\subsection{Trabalhos Relacionados}          
+      
 
 
 \section{Motivação} 
@@ -72,8 +72,13 @@ Este trabalho possui como objetivo geral realizar a correção de mapas de profu
     
 \end{itemize}
 
-\chapter{Revisão Bibliográfica}
+\chapter{Trabalhos Relacionados}
 
+Em \citeonline{liu2012guided} é proposto um algoritmo de \textit{inpainting} para aprimorar os mapas de profundidade capturados com Kinect, estendendo o método original de marcha rápida (\textit{Fast Marching Method} - FMM) para reconstruir regiões desconhecidas incorporando uma imagem RGB alinhada como guia. Em seguida, um filtro de preservação de bordas é aplicado para reduzir o ruído nas regiões de separação de objetos. 
+
+No trabalho de \citeonline{zhang2018deep}, foi desenvolvido um esquema que utiliza uma rede neural para inferir as normais de superfície e os limites de oclusão a partir de uma imagem RGB. Essas predições são combinadas com mapas de profundidade de câmeras RGB-D através de um método de otimização para computar a profundidade resultante de todos os pixels da imagem. A rede neural possui arquitetura totalmente convolucional utilizando a VGG-16 como \textit{backbone} e é treinada com as normais de superfície e limites de oclusão computados a partir da renderização de uma malha tridimensional reconstruída a partir de múltiplos ângulos de visão. 
+
+\citeonline{dourado2020multi} introduz o método NSGA2CGP, uma abordagem de otimização multi-objetivo que integra programação cartesiana genética para otimizar filtros morfológicos em escala de cinza para completar mapas de profundidade utilizados em sistemas de navegação para pessoas com deficiência visual. O objetivo é minimizar tanto os erros quanto a complexidade dos elementos estruturantes dado as limitações energéticas dos sistemas de navegação embarcados. Além do erro, também foram mensurados na aplicação o consumo de energia e tempo de execução. 
 
 \chapter{Marco Teórico}
 
