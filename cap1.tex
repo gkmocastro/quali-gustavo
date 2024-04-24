@@ -74,11 +74,31 @@ Este trabalho possui como objetivo geral realizar a correção de mapas de profu
 
 \chapter{Trabalhos Relacionados}
 
+%COMMENT -----------------------------------------------------------
+\textcolor{red}{acho que vale a pena organizar os trabalhos por método empregado, i) métodos determinísticos (não inteligentes), ii) redes neurais convolucionais, iii) transformers, iv) modelos generativos (gans e diffusion e lama e oq mais tiver)}
+
 Em \citeonline{liu2012guided} é proposto um algoritmo de \textit{inpainting} para aprimorar os mapas de profundidade capturados com Kinect, estendendo o método original de marcha rápida (\textit{Fast Marching Method} - FMM) para reconstruir regiões desconhecidas incorporando uma imagem RGB alinhada como guia. Em seguida, um filtro de preservação de bordas é aplicado para reduzir o ruído nas regiões de separação de objetos. 
 
 No trabalho de \citeonline{zhang2018deep}, foi desenvolvido um esquema que utiliza uma rede neural para inferir as normais de superfície e os limites de oclusão a partir de uma imagem RGB. Essas predições são combinadas com mapas de profundidade de câmeras RGB-D através de um método de otimização para computar a profundidade resultante de todos os pixels da imagem. A rede neural possui arquitetura totalmente convolucional utilizando a VGG-16 como \textit{backbone} e é treinada com as normais de superfície e limites de oclusão computados a partir da renderização de uma malha tridimensional reconstruída a partir de múltiplos ângulos de visão. 
+ 
 
-\citeonline{dourado2020multi} introduz o método NSGA2CGP, uma abordagem de otimização multi-objetivo que integra programação cartesiana genética para otimizar filtros morfológicos em escala de cinza para completar mapas de profundidade utilizados em sistemas de navegação para pessoas com deficiência visual. O objetivo é minimizar tanto os erros quanto a complexidade dos elementos estruturantes dado as limitações energéticas dos sistemas de navegação embarcados. Além do erro, também foram mensurados na aplicação o consumo de energia e tempo de execução. 
+\citeonline{dourado2020multi} introduz o método NSGA2CGP, uma abordagem de otimização multi-objetivo que integra programação cartesiana genética para otimizar filtros morfológicos em escala de cinza para completar mapas de profundidade utilizados para algoritmo detector de caminho livre. O objetivo é minimizar tanto os erros quanto a complexidade dos elementos estruturantes dado as limitações energéticas dos sistemas de navegação embarcados para pessoas com deficiência visual. Além do erro, também foram mensurados na aplicação, o consumo de energia e tempo de execução. 
+
+
+É proposto por \citeonline{fujii2020rgb} um método para \textit{inpainting} de imagens RGB-D utilizando uma rede generativa adversarial (\textit{Generative Adversarial Network} - GAN) objetivando restaurar simultâneamente a textura e geometria de regiões faltantes levando em consideração as informações complementares de cor e profundidade com uma abordagem de fusão tardia, resultando na restauração tanto dos canais RGB quanto de mapas de profundidade.
+
+Buscando complementar o trabalho de \citeonline{zhang2018deep}, os autores \citeonline{huang2019indoor} desenvolveram um \textit{framework} para completar mapas de profundidade buscando preservar a clareza das bordas dos objetos enquanto mantém a estrutura da imagem, evitando o cenário onde as redes neurais aprendem meramente a interpolar os valores de profundidade. É empregado o mecanismo de atenção própria para reunir informação das características de normais de superfície e limites de oclusão. Os autores afirmam que são alcançados tempos de execução menores em relação ao estado da arte.
+
+
+Em \citeonline{rho2022guideformer}, é apresentada uma arquitetura para correção de mapas de profundidade esparsos em três estágios. Uma estrutura dupla de \textit{encoder-decoder} baseada em \textit{transformers} para extrair características dos \textit{tokens} das imagens RGB e mapas de profundidade esparsos. Um módulo de atenção guiada (GAM, do inglês \textit{Guided-Attention Module}) para fusionar os dados das duas modalidades distintas. Um método para fusionar os resultados dos ramos e capturar as dependências intermodais. \textcolor{red}{talvez não tenha ficado bem explicado}
+
+
+Ainda utilizando GANs, \citeonline{wang2022rgb} introduziram 
+
+
+
+
+
 
 \chapter{Marco Teórico}
 
