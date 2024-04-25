@@ -1,0 +1,33 @@
+\chapter{Trabalhos Relacionados}
+
+%COMMENT -----------------------------------------------------------
+\textcolor{red}{acho que vale a pena organizar os trabalhos por método empregado, i) métodos determinísticos (não inteligentes), ii) redes neurais convolucionais, iii) transformers, iv) modelos generativos (gans e diffusion e lama e oq mais tiver)}
+
+Em \citeonline{liu2012guided} foi proposto um algoritmo de \textit{inpainting} para aprimorar os mapas de profundidade capturados com Kinect, estendendo o método original de marcha rápida (\textit{Fast Marching Method} - FMM) para reconstruir regiões desconhecidas incorporando uma imagem RGB alinhada como guia. Em seguida, aplica-se um filtro de preservação de bordas para reduzir o ruído nas regiões de separação de objetos. 
+
+No trabalho de \citeonline{zhang2018deep}, foi desenvolvido um esquema que utiliza uma rede neural para inferir as normais de superfície e os limites de oclusão a partir de uma imagem RGB. Essas predições são combinadas com mapas de profundidade de câmeras RGB-D através de um método de otimização para computar a profundidade resultante de todos os pixels da imagem. A rede neural possui arquitetura totalmente convolucional utilizando a VGG-16 como \textit{backbone} e é treinada com as normais de superfície e limites de oclusão computados a partir da renderização de uma malha tridimensional reconstruída a partir de múltiplos ângulos de visão. 
+ 
+
+\citeonline{dourado2020multi} introduz o método NSGA2CGP, uma abordagem de otimização multi-objetivo que integra programação cartesiana genética para a otimização de filtros morfológicos em escala de cinza para completar mapas de profundidade utilizados para algoritmo detector de caminho livre. O objetivo é minimizar tanto os erros quanto a complexidade dos elementos estruturantes dado as limitações energéticas dos sistemas de navegação embarcados para pessoas com deficiência visual. Além do erro, também foram mensurados na aplicação, o consumo de energia e tempo de execução. 
+
+
+É proposto por \citeonline{fujii2020rgb} um método para \textit{inpainting} de imagens RGB-D utilizando uma rede generativa adversarial (\textit{Generative Adversarial Network} - GAN) objetivando restaurar simultâneamente a textura e geometria de regiões faltantes levando em consideração as informações complementares de cor e profundidade com uma abordagem de fusão tardia, resultando na restauração tanto dos canais RGB quanto de mapas de profundidade.
+
+Com o objetivo de complementar o trabalho de \citeonline{zhang2018deep}, os autores \citeonline{huang2019indoor} desenvolveram um \textit{framework} para completar mapas de profundidade buscando preservar a clareza das bordas dos objetos mantendo a estrutura da imagem, evitando o cenário onde as redes neurais aprendem meramente a interpolar os valores de profundidade. É empregado o mecanismo de atenção própria para reunir informação das características de normais de superfície e limites de oclusão. Os autores afirmam que são alcançados tempos de execução menores em relação ao estado da arte.
+
+
+Em \citeonline{rho2022guideformer}, é apresentada uma arquitetura para correção de mapas de profundidade esparsos em três estágios. Uma estrutura dupla de \textit{encoder-decoder} baseada em \textit{transformers} para extrair características dos \textit{tokens} das imagens RGB e mapas de profundidade esparsos. Um módulo de atenção guiada (GAM, do inglês \textit{Guided-Attention Module}) para fusionar os dados das duas modalidades distintas. Um método para fusionar os resultados dos ramos e capturar as dependências intermodais. \textcolor{red}{talvez não tenha ficado bem explicado}
+
+
+Ainda utilizando GANs, \citeonline{wang2022rgb} propôs uma rede de dois ramos projetada para estimar mapas de profundidade completos a partir de pares de mapas de profundidade incompletos e imagens RGB. No primeiro ramo, uma estrutura de \textit{encoder-decoder} é empregada para predizer valores de profundidade densos. No segundo ramo, é utilizada uma estrutura de GAN que possui como entrada as características do mapa incompleto com a imagem RGB atuando como condicionamento para gerar uma predição de mapa de profundidade denso e um mapa de confiança, que é avaliado por uma rede discriminadora do mapa real. Um módulo de fusão adaptativa chamado W-AdaIN é empregado para propagar características entre os ramos. \textcolor{red}{nem eu entendi direito}
+
+
+Um módulo de codificação esparsa de convolução espacial aliado a filtragem bilateral é introduzido por \citeonline{wu2022joint}. Primeiramente um dicionário convolucional e uma codificação esparsa são aprendidos pela rede via \textit{self-supervised learning} para preencher pequenas áreas do mapa incompleto, resultando em uma imagem de profundidade inicial. Em seguida, um filtro conjunto bilateral hierárquico é construído utilizando a imagem RGB correspondente para preencher partes maiores de dados faltantes, dado que valores de profundidade em \textit{pixels} adjacentes são similares em partes com cores parecidas.
+
+
+
+Com o foco em corrigir dados de profundidade de câmeras ToF equipadas em \textit{smartphones}, o trabalho de \citeonline{zhang2022indepth} desenvolveu uma arquitetura de redes neurais convolucionais baseadas em dois ramos \textit{encoder-decoder} com \textit{skip-connections} entre os estágios do \textit{decoder} para cada estágio correspondente dos dois \textit{encoders}. Sendo um dos ramos para extração de característica da imagem RGB inicializado com os pesos do \textit{dataset} ImageNet e congelado durante o processo de treinamento, e outro para o mapa de profundidade incompleto. É empregado também um módulo de decoficação com dilatação para reconstruir a imagem a partir de dados de uma área maior. É proposta uma função de perda híbrida baseada na imposição da geometria da cena e um método de aumento de dados para remoção de artefatos.
+
+
+
+
