@@ -47,9 +47,11 @@ Considerando as limitações impostas por métodos ativos de aquisição de prof
 
 O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos. \cite{spencer2024third} \cite{rajapaksha2024deep}. 
 
-Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do DL, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing},... 
+Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do DL, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
 
-CONTINUAR INTRODUÇÃO
+Neste cenário, este trabalho propõe uma análise comparativa entre os diversos modelos de estimação monocular de profundidade relativa baseados em DL através da abordagem quantitativa, utilizando métricas e \textit{benchmarks} presentes na literatura, abordagem qualitativa e através de uma aplicação específica. 
+
+REESCREVER A PARTE DA APLICAÇÃO DANDO A ENTENDER Q POSSA SER FEITO
 
 
 
@@ -61,18 +63,18 @@ CONTINUAR INTRODUÇÃO
 
 
 \subsection{Objetivo Geral}
-Este trabalho possui como objetivo geral realizar a correção de mapas de profundidade com erros através de redes neurais artificiais e técnicas de \textit{inpainting}.
+Este trabalho possui como objetivo geral a análise comparativa de estimadores monoculares de profundidade robustos capazes de produzir informação de profundidade de alta qualidade para imagens sob quaisquer circunstâncias.
 
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-    \item Realizar revisão de literatura de métodos de correção de mapas de profundidade.
-    \item Escolher um método de \textit{inpainting} baseado em redes neurais artificiais.
-    \item Estabelecer um método de geração de máscaras de erro para treinamento.
-    \item Corrigir mapas de profundidade com algoritmo de \textit{inpainting} baseado em correção não-guiada.
-    \item Corrigir mapas de profundidade com algoritmo de \textit{inpainting} baseado em correção guiada.
-    \item Corrigir mapas de profundidade utilizando abordagem morfológica.
-    \item Comparar as diferentes abordagens através de métricas de avaliação perante a diferentes níveis de pixels inválidos.
+    \item Estudo e escolha dos datasets que tenha as imagens apropriadas para teste.
+    \item Estudo de modelos de estimação monocular de profundidade relativa do estado da arte.
+    \item Análise e escolha entre os modelos estudados para implementação e testes.
+    \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
+    \item Avaliação de desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
+    \item Avaliação qualitativa dos resultados.
+    \item Implementação de aplicação com os mapas de profundidade gerados.
     
 \end{itemize}
 
