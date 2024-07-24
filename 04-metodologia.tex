@@ -3,9 +3,37 @@
 
 \section{Datasets}
 
-O presente trabalho exige um tipo de base de dados pouco encontrado na literatura, trios de imagem RGB, mapa de profundidade com erros e um outro mapa de profundidade denso e completo. De acordo com \cite{zhang2018deep}, uma das maneiras de se obter esses dados seria capturar imagens com uma câmera RGB-D de baixo custo e alinha-las com outra captura simultânea de um sensor mais preciso, porém essa abordagem é muito custosa, além de que não há disponibilidade de grandes conjuntos para treinamento.
+Bases de dados para treinamento ou teste de algoritmos de estimação de profundidade consistem em imagens RGB de uma cena e sua anotação correspondente em profundidade. Ao longo do tempo, diversos \textit{datasets} foram propostos para este fim com variações em formatos de anotações, tipos de cena (interior ou exterior), métodos de captura, qualidade, resolução e tamanho \textcolor{red}{colocar citações que tem na seção 3 do midas 1}.
 
-O presente projeto pretende utilizar como base de dados principal o \textbf{Hypersim}. Um \textit{dataset} para compreensão de cenas baseado em cenas sintéticas fotorrealistas. Contendo 77.400 imagens de 461 cenas \textit{indoor} com pares de RGB e mapas de profundidade calculado deterministicamente, além de outras informações como normais de superfície, rótulos de segmentação e detecção de objetos e entre outros \cite{roberts2021hypersim}.
+Geralmente são empregados sensores e outras tecnologias como \textit{Stereo Matching} e \textit{Structure from Motion} para criar os \textit{datasets} de profundidade, porém, são abordagens muito complexas, custosas, ou inviáveis em algumas situações particulares, por exemplo, obter mapas de profundidades densos a partir de veículos em movimento  \cite{yang2024depthv1}.
+Cada \textit{dataset} possui suas próprias características, problemas e viéses. Dados com informação de profundidade e em alta qualidade são complexos de adquirir, sendo que os melhores conjuntos são utilizados no treinamento dos modelos presentes na literatura \cite{ranftl2020towards}. 
+
+Para avaliar os modelos de estimação de profundidade, será utilizado o protocolo de \textit{zero-shot cross-dataset transfer}, i.e. realizar os testes e métricas em bases de dados que não compuseram os conjuntos de treinamentos dos modelos analisados. A performance em \textit{cross-dataset} é considerada uma aproximação mais fiel da performance em mundo real em uma aplicação, pois os conjuntos de testes relativos aos conjuntos utilizados no treinamento podem refletir os mesmos viéses e situações \cite{ranftl2020towards}.
+
+
+% PESQUISA ANTIGA -------------------------------------------------------------------
+% O presente trabalho exige um tipo de base de dados pouco encontrado na literatura, trios de imagem RGB, mapa de profundidade com erros e um outro mapa de profundidade denso e completo. De acordo com \cite{zhang2018deep}, uma das maneiras de se obter esses dados seria capturar imagens com uma câmera RGB-D de baixo custo e alinha-las com outra captura simultânea de um sensor mais preciso, porém essa abordagem é muito custosa, além de que não há disponibilidade de grandes conjuntos para treinamento.
+
+% O presente projeto pretende utilizar como base de dados principal o \textbf{Hypersim}. Um \textit{dataset} para compreensão de cenas baseado em cenas sintéticas fotorrealistas. Contendo 77.400 imagens de 461 cenas \textit{indoor} com pares de RGB e mapas de profundidade calculado deterministicamente, além de outras informações como normais de superfície, rótulos de segmentação e detecção de objetos e entre outros \cite{roberts2021hypersim}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+    \centering
+    \caption{Características dos datasets utilizados no trabalho}
+    \label{tabdata}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{ccccccc}
+    \hline
+    \textbf{Dataset} & \textbf{Sensor} & \textbf{Anotação} & \textbf{Tipo} & \textbf{Cenário} & \textbf{Num. Imagens} & \textbf{Resolução} \\ \hline
+    KITTI  & LiDAR         & Esparça & Real      & Outdoor        & 44 K   & 1024 $\times$ 320  \\
+    Nyu-V2 & Kinect V1     & Densa   & Real      & Indoor         & 1449   & 640 $\times$ 480   \\
+    DIODE  & Laser Scanner & Densa   & Real      & Indoor/Outdoor & 25,5 K & 768 $\times$ 1024  \\
+    SINTEL & -             & Densa   & Sintético & Indoor/Outdoor & 1064   & 1024 $\times$ 436  \\
+    ETH3D  & Laser Scanner & Densa   & Real      & Indoor/Outdoor & 454    & 6048 $\times$ 4032 \\ \hline
+    \end{tabular}%
+    }
+    \end{table}
 
 \section{Modelos Escolhidos}
 
