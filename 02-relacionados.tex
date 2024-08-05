@@ -1,3 +1,11 @@
 \chapter{Trabalhos Relacionados}
 
 
+No passado, a tarefa de Estimação Monocular de Profundidade não era abordada de forma direta. Um exemplo deste cenário é o trabalho de \citeonline{hoiem2005automatic}, em que o objetivo é reconstruir uma cena 3D em um ambiente virtual através de uma única imagem RGB. Apesar da finalidade não ser a construção de um mapa de profundidade, a reconstrução 3D de uma cena é diretamente ligada à informação de profundidade, portanto, esse trabalho é creditado em revisões bibliográficas do tema \cite{mertan2022single}. É considerado que um ambiente externo consiste de elementos fixos, o céu, um plano de chão e objetos verticais saindo deste plano. É realizada uma classificação de superpixels nas classes através de características pré-selecionadas manualmente, e os objetos são colocados em 3D através das mesmas.
+
+
+Ainda nos primórdios da MDE, um dos primeiros trabalhos a se propor a estimar um mapa de profundidade métrico de uma única imagem RGB é o de \citeonline{saxena2005learning}. Filtros manualmente projetados são aplicados em pequenos pedaços de uma imagem de entrada para extrair características. Para cada parte, um valor de distância é estimado. Os filtros são então aplicados em múltiplas escalas para levar em consideração as pistas visuais globais e de partes adjacentes. Pesos maiores são atribuidos às características dos pedaços que ficam nas mesmas colunas, baseado na premissa de que as estruturas dos objetos observados são em sua maioria, verticais. Além disso, um modelo baseado em Campos Aleatórios de Markov (\textit{Markov Random Field} - MRF) é treinado de maneira supervisionada para estimar a profundidade a partir das características.
+
+
+Algum tempo depois, outro trabalho publicado por \citeonline{saxena2008make3d}, adicionou um pressuposto pertinente ao estado da arte de MDE, que uma cena consiste de várias pequenas superfícies planas e a orientação e localização 3D dessa superfície podem ser utilizadas para calcular sua profundidade. Esse pressuposto é utilizado até hoje em motores gráficos que criam modelos de objetos complexos através de malhas triangulares. Novamente, é utilizado um modelo baseado em MRF treinado de maneira supervisionada. As características são obtidas através de filtros manualmente projetados e a contextualização global é considerada através de superpixels adjacentes.
+
