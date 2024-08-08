@@ -130,9 +130,9 @@ Embora o perceptron tenha sido um avanço significativo na época de sua introdu
 O perceptron, no entanto, segundo \citeonline{hertz2018introduction} permanece um conceito central na teoria das redes neurais, servindo como base para a compreensão de modelos mais sofisticados e sendo uma ferramenta educacional importante para introduzir os conceitos de aprendizado supervisionado e classificação.
 
 
-\subsection{Convolutional Neural Networks}
+\subsection{Redes Neurais Convolucionais}
 
-As Convolutional Neural Networks (CNNs), ou Redes Neurais Convolucionais, são um tipo específico de rede neural artificial projetada para processar e analisar dados que possuem uma estrutura de grade, como imagens \cite{o2015introduction}. As CNNs têm se mostrado altamente eficazes em tarefas de visão computacional, como reconhecimento de imagem, detecção de objetos e segmentação de imagem. Ao contrário das redes neurais tradicionais, que tratam os dados de entrada como um vetor unidimensional, as CNNs exploram as propriedades espaciais dos dados, permitindo que a rede aprenda características locais e complexas \cite{nielsen2015neural}.
+As \textit{Convolutional Neural Networks} (CNNs), ou Redes Neurais Convolucionais, são um tipo específico de rede neural artificial projetada para processar e analisar dados que possuem uma estrutura de grade, como imagens \cite{o2015introduction}. As CNNs têm se mostrado altamente eficazes em tarefas de visão computacional, como reconhecimento de imagem, detecção de objetos e segmentação de imagem. Ao contrário das redes neurais tradicionais, que tratam os dados de entrada como um vetor unidimensional, as CNNs exploram as propriedades espaciais dos dados, permitindo que a rede aprenda características locais e complexas \cite{nielsen2015neural}.
 
 A arquitetura das CNNs é composta por várias camadas de diferentes tipos, cada uma desempenhando um papel diferente no processamento e na extração de características dos dados de entrada. As principais camadas das CNNs incluem camadas convolucionais, camadas de pooling (ou subamostragem), e camadas totalmente conectadas (ou densas). Um exemplo clássico de uma arquitetura de CNN pode ser visualizado na Figura \ref{fig:cnnexample}, que mostra a imagem de entrada passando por camadas convolucionais, pooling, e densas, antes de chegar à saída \cite{o2015introduction}.
 
@@ -186,13 +186,6 @@ Ainda segundo \cite{castellano2023performance}, cada uma das técnicas de aquisi
 
 
 
-\section{Informação de profundidade}
-Sensores de profundidade estão cada vez mais embarcados em equipamentos amplamente difundidos como dispositivos de realidade aumentada (Occulus, Kinnect) e até mesmo em smartphones \cite{du2020depthlab}, principalmente as câmeras ToF, pois são capazes de desempenhar de maneira satisfatória mesmo com baixa potência \cite{branscombe2018microsoft}. De acordo com \cite{xie2021ultradepth}, a adoção de sensores de profundidade em smartphones tende a aumentar nos próximos anos, com diversas aplicações como tradução de linguagem de sinais \cite{park2021enabling} e sistemas de navegação mobile para pessoas com deficiência visual \cite{see2022smartphone}.
-
-%sinal 57, gestos 86, e aumentada 97
-
-Ainda segundo \cite{castellano2023performance}, cada uma das técnicas de aquisição de imagens de profundidade possui lados negativos que podem impactar os dados. Por exemplo, as câmeras ToF podem sofrer com invalidação de pixels próximos a cantos ou bordas de objetos devido à interferências entre os raios IR em superfícies descontínuas ou reflexivas \cite{hansard2012time}. Outros tipos de câmeras RGB-D mais comuns como o Microsoft Kinect ou Intel RealSense podem produzir valores inválidos em superfícies muito brilhantes ou reflexivas como espelhos, superfícies metálicas ou muito escuras \cite{zollhofer2019commodity}. Em ambientes internos, tais imagens podem conter até 50\% de dados faltantes. \cite{zhang2022indepth} \cite{zhang2018deep}. Pontos cuja medição é desconhecida são representados por pixels totalmente pretos ou totalmente brancos \cite{dourado2020multi}.
-\section{Modelos de estimação de profundidade}
 
 
 \section{Modelos de estimação de profundidade}
