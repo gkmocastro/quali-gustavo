@@ -43,7 +43,7 @@ Garantir a correta representação dos mapas em escala de pixel é de considerá
 Considerando as limitações impostas por métodos ativos de aquisição de profundidade, surge a possibilidade de inferir um mapa de profundidade denso e completo de uma cena a partir de uma ou mais imagens RGB, processo conhecido como estimação de profundidade (\textit{Depth Estimation - DE}) \cite{rajapaksha2024deep}. Quando duas imagens de câmeras diferentes são utilizadas para obter-se a informação de profundidade, denomina-se \textit{Stereo Matching (SM)}. No entanto, métodos baseados em imagens \textit{stereo} requerem processos complexos de calibração e alinhamento \cite{dong2022towards}.
 
 
-O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos. \cite{spencer2024third} \cite{rajapaksha2024deep}. 
+O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos \cite{spencer2024third} \cite{rajapaksha2024deep}. 
 
 Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do DL, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
 
@@ -53,7 +53,11 @@ Neste cenário, este trabalho propõe uma análise comparativa entre os diversos
 
 \section{Motivação e Justificativa} 
 
+\textcolor{red}{tem um monte de aplicações aí de mapa de profundidade}
 
+Reconstruir estruturas 3D a partir de imagens aliadas à informação geométrica prévia é um dos tópicos amplamente investigados pela ciência nos últimos anos \cite{zhao2020monocular}. As técnicas de \textit{Structure From Motion} (SfM) e \textit{Simultaneous Localization and Mapping} (SLAM) são termos que relacionam a área da visão computacional e a robótica com reconstrução de cenas 3D, estimação de poses e sensores. Métodos de SLAM que objetivam a fusão de característica de mapas de profundidade obtidos através de sensores em movimento tiveram um aumento de popularidade em tempos recentes, visto que podem ser empregados para navegação e mapeamento de diversos tipos de dispositivos autônomos, como drones e robôs, além das aplicações em realidade aumentada e computação gráfica \cite{tateno2017cnn}.
+
+\textcolor{red}{terminar dizendo que as aplicações exigem que a informação de profundidade seja boa}
  
 \section{Objetivos}
 
@@ -64,11 +68,11 @@ Este trabalho possui como objetivo geral a análise comparativa de estimadores m
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-    \item Estudo e escolha dos datasets que tenha as imagens apropriadas para teste.
+    \item Estudo e escolha dos datasets que contenham imagens apropriadas para teste.
     \item Estudo de modelos de estimação monocular de profundidade relativa do estado da arte.
     \item Análise e escolha entre os modelos estudados para implementação e testes.
-    \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
     \item Avaliação de desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
+    \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
     \item Avaliação qualitativa dos resultados.
     \item Implementação de aplicação com os mapas de profundidade gerados.
     
