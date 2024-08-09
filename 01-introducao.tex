@@ -1,7 +1,7 @@
 
 \chapter{Introdução}
 
-\section{Contextualização da pesquisa}
+\section{Contextualização}
 
 Informação de profundidade é uma das representações mais úteis para o entendimento de ambientes físicos \cite{lasinger2019towards} \cite{zhou2019does}. São também uma parte importante da caracterização de relações geométricas de uma determinada cena. As imagens de profundidades (ou mapas de profundidade) desempenham um papel importante em uma série de aplicações que envolvem visão computacional \cite{eigen2014depth}.  Entre elas, podemos citar: compreensão de cenas \cite{jaritz2018sparse}, veículos autônomos \cite{song2021self}, navegação de robôs \cite{ma2019sparse} navegação de VANTs, \cite{padhy2023monocular} fazendas inteligentes \cite{farkhani2019sparse}, e realidade aumentada \cite{du2020depthlab}. 
 
@@ -55,20 +55,20 @@ Neste cenário, este trabalho propõe uma análise comparativa entre os diversos
 
 \textcolor{red}{tem um monte de aplicações aí de mapa de profundidade}
 
+Os recentes avanços na área de MDE propiciaram a aquisição de informação de profundidade de maneira mais precisa e rápida, dessa forma, também favorecem indiretamente as aplicações que dependem desse tipo de dado, como reconstrução 3D, navegação e veículos autônomos. Além disso, devido à facilidade de implementação dessas técnicas, também podemos citar melhoramentos em aplicações mais modernas como conteúdo gerado por Inteligência Artificial \cite{yang2024depth}.
+
+
 Reconstruir estruturas 3D a partir de imagens e informação geométrica prévia é um dos tópicos amplamente investigados pela ciência nos últimos anos \cite{zhao2020monocular}. A técnica \textit{Simultaneous Localization and Mapping} (SLAM) consiste planejar e controlar os movimentos de um robô por meio da construção de um mapa espacial do ambiente ao seu redor e obter a sua localização relativa, relacionando a área da visão computacional e a robótica através reconstrução de ambientes 3D e sensores de imagem \cite{placed2023survey} \cite{stachniss2016simultaneous}. Métodos de SLAM que objetivam a fusão de característica de mapas de profundidade obtidos através de sensores em movimento tiveram um aumento de popularidade em tempos recentes, visto que podem ser empregados para navegação e mapeamento de diversos tipos de dispositivos autônomos, como drones e robôs, além das aplicações em realidade aumentada e computação gráfica \cite{tateno2017cnn}.
 
 
-detecção 3d possui aplicações para veículos autonomos e robotica
-
-um dos jeitos de realizar detecção 3d é com lidar, que produz informação precisa em nuvens de pontos 3d. 
-
-só que o lidar é caro e tem a esparsidade tambe, entao é melhor alternativas como cameras monoculares
-
-estimar 3d sem lidar é complicado devido a ausencia de informação de profundidade e de escala
+Detectores de objetos com imagens tem sido aplicados em diversas áreas, como veículos autônomos e visão robótica, em que os sistemas necessitam estimar a localização de pedestres, veículos ou outros obstáculos. Devido à ausência informação de profundidade em imagens 2D, algumas aplicações exigem que a detecção seja feita no espaço tridimensional. O problema da detecção 3D consiste em estimar os vértices das caixas tridimensionais que contenham determinados objetos \cite{hu2022detection}. Uma das formas de adquirir a informação de profundidade necessária é através de LiDAR, entretanto, segundo \citeonline{wu2022sparse}, métodos de detecção 3D baseados somente em informação de LiDAR sofrem com a esparsidade dos dados, além do alto custo financeiro do equipamento. De acordo com \citeonline{ding2020learning} uma alternativa mais desejável é o uso de câmeras monoculares. Mapas de profundidade podem são empregados de duas formas: Transformando os mapas em representação pseudo-LiDAR, ou em sistemas multi-modais em conjunto com a informação RGB. A performance dos métodos de detecção 3D que utilizam informação de profundidade dependem da qualidade e densidade dos mesmos, portanto, as novas tecnologias de estimação monocular profundidade podem contribuir significativamente para este fim.
 
 
 
-\textcolor{red}{terminar dizendo que as aplicações exigem que a informação de profundidade seja boa}
+
+
+
+\textcolor{red}{terminar dizendo que as aplicações exigem que a informação de profundidade seja boa e que anteriormente era ruim e agora é bom}
  
 \section{Objetivos}
 
