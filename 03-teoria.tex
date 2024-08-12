@@ -69,13 +69,13 @@ As principais funções de transformação de intensidade incluem:
 
 Assim, ao aplicar transformações de intensidade e técnicas de filtragem, é possível ajustar e melhorar imagens de maneira significativa, seja para visualização aprimorada ou para análises mais precisas.
 % EXEMPLO optional
-Considere a transformação de intensidade ilustrada na Figura \ref{exemploTransformacaoIntensidade}.a. Como mostra \citeonline{gonzalez2010processamento}, quando aplicamos essa transformação a cada pixel da imagem original $f$, geramos uma nova imagem $g$ com maior contraste. Nesta transformação, os valores de intensidade abaixo de um ponto $k$ são escurecidos, enquanto os valores acima de $k$ são clareados. Isso resulta em uma imagem com contraste ampliado, onde áreas escuras são mais densas e áreas claras são mais evidentes.
+Considerando a transformação de intensidade ilustrada na Figura \ref{exemploTransformacaoIntensidade}.a. Como mostra \citeonline{gonzalez2010processamento}, calculando essa transformação a cada pixel da imagem original $f$, gera-se uma nova imagem $g$ com maior contraste. Nesta transformação, os valores de intensidade abaixo de um ponto $k$ são escurecidos, enquanto os valores acima de $k$ são clareados. Isso resulta em uma imagem com contraste ampliado, onde áreas escuras são mais densas e áreas claras são mais evidentes.
 
 Na Figura \ref{exemploTransformacaoIntensidade}.b, a transformação $T(r)$ resulta em uma imagem binária, onde os pixels são convertidos em apenas dois níveis de intensidade, dependendo de um limiar específico. Essa técnica, conhecida como limiarização, simplifica a imagem original em uma forma mais clara e destacada, com apenas duas cores, tipicamente preto e branco.
 
 Essas transformações são exemplos de como ajustes nos valores de intensidade podem alterar significativamente a aparência e a utilidade da imagem, dependendo do objetivo do processamento.
 
-\begin{figure}
+\begin{figure}[h]
     \centering   
     \includegraphics[width=\textwidth]{fig/ExemploTranformacaoIntensidade.png}
     \caption{Funções para ajuste da intensidade em imagens. (a) Método de ampliação de contraste, que aumenta a diferença entre os níveis de intensidade, destacando áreas mais escuras e mais claras. (b) Método de binarização, que converte a imagem em dois níveis distintos de intensidade, geralmente preto e branco, com base em um limiar definido.}
@@ -96,11 +96,13 @@ A real revolução no campo das redes neurais veio com o desenvolvimento de rede
 
 O perceptron é uma das estruturas fundamentais das redes neurais, representando o modelo mais simples de um neurônio artificial. Introduzido por \citeonline{rosenblatt2021perceptron}, o perceptron é capaz de realizar classificações binárias, distinguindo entre duas classes distintas com base em dados de entrada.
 
-Um perceptron funciona através de uma série de operações matemáticas simples. Inicialmente, cada entrada é multiplicada por um peso, que é um valor numérico associado a essa entrada. Esses pesos são ajustados durante o processo de treinamento para que o perceptron aprenda a mapear as entradas para as saídas desejadas. A soma ponderada dessas entradas é então calculada e passada por uma função de ativação, que decide se o neurônio "ativa" ou não. Tradicionalmente, a função de ativação usada em um perceptron simples é a função degrau, que retorna um valor binário - geralmente 0 ou 1 \cite{hertz2018introduction}. Esse processo pode ser formalmente expresso pela fórmula:
+Um perceptron funciona através de uma série de operações matemáticas simples. Inicialmente, cada entrada é multiplicada por um peso, que é um valor numérico associado a essa entrada. Esses pesos são ajustados durante o processo de treinamento para que o perceptron aprenda a mapear as entradas para as saídas desejadas. A soma ponderada dessas entradas é então calculada e passada por uma função de ativação, que decide se o neurônio "ativa" ou não. Tradicionalmente, a função de ativação usada em um perceptron simples é a função degrau, que retorna um valor binário - geralmente 0 ou 1 \cite{hertz2018introduction}. Esse processo pode ser formalmente expresso pela Equação \ref{eq:perceptron}:
 
-\[
-y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
-\]
+\begin{equation}
+    y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
+    \label{eq:perceptron}
+\end{equation}
+
 
 onde $y$ é a saída do perceptron, $x_i$ são as entradas, $w_i$ são os pesos associados, $b$ é o bias (um termo adicional que permite que o modelo ajuste a função de ativação, mesmo com todas as entradas em zero), e $f$ é a função de ativação.
 
@@ -113,15 +115,17 @@ A Figura \ref{fig:perceptron} ilustra visualmente a estrutura de um perceptron, 
     \label{fig:perceptron}
 \end{figure}
 
-O perceptron aprende a partir de um processo de ajuste de pesos, conhecido como regra de aprendizagem do perceptron. Durante o treinamento, o perceptron ajusta os pesos com base no erro da saída prevista em relação à saída desejada. Esse ajuste é feito através de um processo iterativo, onde o erro é propagado de volta através da rede e os pesos são atualizados para minimizar o erro, seguindo a equação:
+O perceptron aprende a partir de um processo de ajuste de pesos, conhecido como regra de aprendizagem do perceptron. Durante o treinamento, o perceptron ajusta os pesos com base no erro da saída prevista em relação à saída desejada. Esse ajuste é feito através de um processo iterativo, onde o erro é propagado de volta através da rede e os pesos são atualizados para minimizar o erro, seguindo as equações \ref{eq:propag1} e \ref{eq:propag2}:
 
-\[
-w_i = w_i + \Delta w_i
-\]
+\begin{equation}
+    w_i = w_i + \Delta w_i
+    \label{eq:propag1}
+\end{equation}
 
-\[
-\Delta w_i = \eta (d - y) x_i
-\]
+\begin{equation}
+    \Delta w_i = \eta (d - y) x_i
+    \label{eq:propag2}
+\end{equation}
 
 onde \( \Delta w_i \) é o ajuste do peso, \( \eta \) é a taxa de aprendizado, \( d \) é a saída desejada, e \( y \) é a saída calculada pelo perceptron. A taxa de aprendizado é um parâmetro importante que controla o quão rapidamente o modelo se adapta aos dados.
 
@@ -136,7 +140,7 @@ As \textit{Convolutional Neural Networks} (CNNs), ou Redes Neurais Convolucionai
 
 A arquitetura das CNNs é composta por várias camadas de diferentes tipos, cada uma desempenhando um papel diferente no processamento e na extração de características dos dados de entrada. As principais camadas das CNNs incluem camadas convolucionais, camadas de pooling (ou subamostragem), e camadas totalmente conectadas (ou densas). Um exemplo clássico de uma arquitetura de CNN pode ser visualizado na Figura \ref{fig:cnnexample}, que mostra a imagem de entrada passando por camadas convolucionais, pooling, e densas, antes de chegar à saída \cite{o2015introduction}.
 
-\begin{figure}
+\begin{figure}[b!]
     \centering   
     \includegraphics[width=0.8\textwidth]{fig/CNNExample.png}
     \caption{Exemplo clássico de uma arquitetura de CNN, mostrando a imagem de entrada, camadas convolucionais, camadas de pooling, camadas densas e saída.}
