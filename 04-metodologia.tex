@@ -95,13 +95,23 @@ O método proposto por este trabalho consiste em uma transformação de intensid
     \label{posproc}
 \end{figure}
 
-O método proposto diferencia-se do tradicional baseado em fator de escala e deslocamento por mínimos quadrados pois é associada uma função linear para cada região na quantização da imagem, o que propicia uma correção adaptada para cada proporção de distância. Ressalta-se que o método não será utilizado protocolo de avaliação dos modelos de estimação de profundidade, mas sim o que é mais prevalente na literatura.
+O método proposto diferencia-se do tradicional baseado em fator de escala e deslocamento por mínimos quadrados pois é associada uma função linear para cada região na quantização da imagem, o que propicia uma correção adaptada para cada proporção de distância. Ressalta-se que o método não será utilizado no protocolo de avaliação dos modelos de estimação de profundidade.
 
-Aos conjuntos de dados que possuem leituras métricas de sensores, será comparado o resultado da técnica de pós-processamento e o resultado de estimadores métricos de profundidade.
-
+será realizada a comparação do resultado da técnica de pós-processamento e o resultado de estimadores métricos de profundidade com os conjuntos de dados que possuem leituras métricas de sensores.
 
 
 \section{Análise com Aplicação}
+
+Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, será utilizada também uma ou mais aplicações práticas. O processo de escolha da aplicação a ser implementada e avaliada passa por três principais critérios, entre eles: 
+
+\begin{itemize}
+    \item Empregar diretamente como entrada do sistema um mapa de profundidade denso.
+    \item Possuir código de testes público.
+    \item Ter o seu desempenho mensurável através de métricas. 
+\end{itemize}
+
+
+
 
 
 \section{Considerações Metodológicas}

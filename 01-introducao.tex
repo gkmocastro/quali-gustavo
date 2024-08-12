@@ -45,9 +45,9 @@ Considerando as limitações impostas por métodos ativos de aquisição de prof
 
 O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos \cite{spencer2024third} \cite{rajapaksha2024deep}. 
 
-Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do DL, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
+Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do aprendizado profundo, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
 
-Neste cenário, este trabalho propõe uma análise comparativa entre os diversos modelos de estimação monocular de profundidade relativa baseados em DL através da abordagem quantitativa, utilizando métricas e \textit{benchmarks} presentes na literatura, abordagem qualitativa e através de uma aplicação.
+Neste cenário, este trabalho propõe uma análise comparativa entre os diversos modelos de estimação monocular de profundidade relativa baseados em aprendizado profundo através da abordagem quantitativa, utilizando métricas e \textit{benchmarks} presentes na literatura, abordagem qualitativa e através de uma aplicação. 
 
 
 
@@ -62,13 +62,13 @@ Reconstruir estruturas 3D a partir de imagens e informação geométrica prévia
 Detectores de objetos com imagens tem sido aplicados em diversas áreas, como veículos autônomos e visão robótica, em que os sistemas necessitam estimar a localização de pedestres, veículos ou outros obstáculos. Devido à ausência informação de profundidade em imagens 2D, algumas aplicações exigem que a detecção seja feita no espaço tridimensional. O problema da detecção 3D consiste em estimar os vértices das caixas tridimensionais que contenham determinados objetos \cite{hu2022detection}. Uma das formas de adquirir a informação de profundidade necessária é através de LiDAR, entretanto, segundo \citeonline{wu2022sparse}, métodos de detecção 3D baseados somente em informação de LiDAR sofrem com a esparsidade dos dados, além do alto custo financeiro do equipamento. De acordo com \citeonline{ding2020learning} uma alternativa mais desejável é o uso de câmeras monoculares. Mapas de profundidade podem são empregados de duas formas: Transformando os mapas em representação pseudo-LiDAR, ou em sistemas multi-modais em conjunto com a informação RGB. A performance dos métodos de detecção 3D que utilizam informação de profundidade dependem da qualidade e densidade dos mesmos, portanto, as novas tecnologias de estimação monocular profundidade podem contribuir significativamente para este fim.
 
 
-\textcolor{red}{It has been shown in the state-of-the-art that monocular depth estimation methods could be
-a potential solution to address many of these challenges [23–25]. These methods perform with a
-relatively small number of operations and in less computation time. They do not require alignment
-and calibration which is important for multi-camera, or multi-sensor depth measurement systems. KHAN ET AL}
 
 
-Para que as diversas aplicações apresentadas possam funcionar de forma eficaz, é necessário garantir a correta representação de profundidade dos mapas que são utilizados como entrada dos sistemas. Dado os recentes avanços nos modelos de MDE, é possível gerar mapas de profundidade de alta qualidade, com fineza de detalhes e de forma rápida, o que cobre as desvantagens de outros tipos de aquisição. Neste cenário, o presente trabalho se justifica como um agente avaliador das tecnologias do estado da arte, tanto através de métricas numéricas, e através de uma aplicação específica. 
+
+
+Segundo \citeonline{khan2020deep}, é evidente o potencial da estimação monocular para problemas de aplicações que envolvam informação de profundidade. Para que as diversas aplicações apresentadas possam funcionar de forma eficaz, é necessário garantir a correta representação dos mapas que são utilizados como entrada dos sistemas. Dado os recentes avanços nos modelos de MDE, tornou-se possível gerar mapas de profundidade de alta qualidade, com fineza de detalhes e de forma rápida, o que cobre as desvantagens de outros tipos de aquisição. 
+
+Neste cenário, faz-se necessária a avaliação dos diversos modelos e técnicas de estimação monocular de profundidade do estado da arte, analisando tanto a sua capacidade de gerar mapas densos e precisos quanto à sua empregabilidade em aplicações práticas que envolvam informação de profundidade, que é a proposta do presente trabalho.
 
  
 \section{Objetivos}
@@ -86,7 +86,7 @@ Este trabalho possui como objetivo geral a análise comparativa de estimadores m
     \item Avaliação de desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
     \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
     \item Avaliação qualitativa dos resultados.
-    \item Implementação de aplicação com os mapas de profundidade gerados.
+    \item Implementação e avaliação de aplicação com os mapas de profundidade gerados a partir dos estimadores do estado da arte.
     
 \end{itemize}
 
