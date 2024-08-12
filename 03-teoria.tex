@@ -176,12 +176,50 @@ Um exemplo clássico de CNN é a arquitetura LeNet-5, desenvolvida por Yann LeCu
 \end{figure}
 
 
-\section{Informação de profundidade}
+\section{Estimação de Profundidade}
+
+% o que é
+
+De acordo com \citeonline{khan2020deep}, o conceito de estimação de profundidade refere-se ao processo de preservar a informação tridimensional de uma cena a partir de informação bidimensional capturada por câmeras. Mapas de profundidade são imagens que caracterizam esse conceito, e podem ser representadas por imagens em escala de cinza onde os tons dos pixels são definidos de acordo com sua distância correspondente na cena original \cite{dourado2020multi}. 
+
+\textcolor{red}{EXEMPLO DE MAPA DE PROFUNDIDADE}
+
+
+%% como é capturado
+
+Segundo \citeonline{rajapaksha2024deep}, as distâncias aos objetos em uma cena são percebidas pelos olhos humanos por meio de pistas visuais como o horizonte, pontos de fuga, tamanho relativo de objetos conhecidos, luz e sombra, e gradiente de textura.  
+
+Diversos tipos de técnicas são atualmente empregadas para adquirir informação de profundidade. Métodos ativos de estimação de profundidade envolvem calcular as distâncias interagindo fisicamente com os objetos do ambiente. Ultrassom e sensores \textit{Time of Flight} (ToF) por exemplo, utilizam da emissão de ondas com velocidade conhecida e medem o tempo de retorno a um receptor. Métodos passivos, por outro lado, envolvem a extração da informação através de processamento de imagens como visão estéreo e estimação monocular de profundidade \cite{khan2020deep}. 
+
+% Sensores RGBD - Red, Green, Blue, Depth - (Kinect v1, Kinect v2 (PAGLIARI;
+% PINTO, 2015) e FARO Focus (VASILJEVIC et al., 2019)), Light Detection and Ranging
+% (LiDAR), câmeras estéreo, Radio Detection And Ranging (RADAR) e Sound Navigation
+% and Ranging (SONAR) são tecnologias que desempenham o papel de extrair dados de
+% profundidade do ambiente e, além disso, são amplamente comercializadas. \cite{de2021aprendizagem}
+
 Sensores de profundidade estão cada vez mais embarcados em equipamentos amplamente difundidos como dispositivos de realidade aumentada (Occulus, Kinnect) e até mesmo em smartphones \cite{du2020depthlab}, principalmente as câmeras ToF, pois são capazes de desempenhar de maneira satisfatória mesmo com baixa potência \cite{branscombe2018microsoft}. De acordo com \cite{xie2021ultradepth}, a adoção de sensores de profundidade em smartphones tende a aumentar nos próximos anos, com diversas aplicações como tradução de linguagem de sinais \cite{park2021enabling} e sistemas de navegação mobile para pessoas com deficiência visual \cite{see2022smartphone}.
 
-%sinal 57, gestos 86, e aumentada 97
+Podemos dividir os métodos de aquisição de imagens de profundidade duas categorias. Os métodos ativos são os que interagem de alguma forma com o ambiente, como as câmeras ToF, que emitem feixes de luz. Já os métodos passivos são os que geram os mapas de profundidade a partir de outras imagens como estimação estéreo ou estimação monocular de profundidade \cite{lahiri2024deep} \cite{zollhofer2019commodity}. 
 
-Ainda segundo \cite{castellano2023performance}, cada uma das técnicas de aquisição de imagens de profundidade possui lados negativos que podem impactar os dados. Por exemplo, as câmeras ToF podem sofrer com invalidação de pixels próximos a cantos ou bordas de objetos devido à interferências entre os raios IR em superfícies descontínuas ou reflexivas \cite{hansard2012time}. Outros tipos de câmeras RGB-D mais comuns como o Microsoft Kinect ou Intel RealSense podem produzir valores inválidos em superfícies muito brilhantes ou reflexivas como espelhos, superfícies metálicas ou muito escuras \cite{zollhofer2019commodity}. Em ambientes internos, tais imagens podem conter até 50\% de dados faltantes. \cite{zhang2022indepth} \cite{zhang2018deep}. Pontos cuja medição é desconhecida são representados por pixels totalmente pretos ou totalmente brancos \cite{dourado2020multi}.
+De acordo com \citeonline{hansard2012time}, o funcionamento de câmeras ToF consiste em um emissor e um receptor de pulso de luz, a distância percorrida pode ser calculada medindo o atraso de detecção ou o desvio de fase do pulso recebido, produzindo um mapa de profundidade, como exemplificado na Figura \ref{fig:tof}. 
+
+\begin{figure}[h]
+    \centering   
+    \includegraphics[width=0.8\textwidth]{fig/tof_cameras.png}
+    \caption{Princípio de funcionamento de câmeras ToF. Fonte: \cite{hansard2012time}}
+    \label{fig:tof}
+\end{figure}
+
+ O primeiro, chamado de ToF ponto-a-ponto, utiliza um mecanismo de inclinação panorâmica para obter uma sequência temporal de medições do tempo de retorno a cada ponto, essa técnica é conhecida como \textit{Light Detection and Ranging} (LiDAR). Esse tipo de técnica é empregada com maior frequência em sensoreamento em ambientes externos, por exemplo, sensores veiculares. Além disso, entre as vantagens desse tipo de tecnologia podemos citar a sua boa performance mesmo em cenários de baixa luminosidade ou em movimento e sua alta resolução e acurácia da informação adquirida \cite{zollhofer2019commodity}.
+
+
+O segundo tipo é chamado de ToF modulado, em que uma câmera utiliza um pulso contínuo modulado em uma determinada frequência. A onda recebida é processada por um detector de desvio de fase. Um exemplo desse tipo de câmera é o Microsoft Kinnect \cite{zollhofer2019commodity}.
+
+De acordo com \citeonline{szeliski2022computer}, o termo correspondência estéreo (do inglês, \textit{Stereo Matching}) refere-se ao processo de construir um modelo 3D de uma cena por meio da busca de pixels correspondentes em pelo menos duas imagens 2D, convertendo assim, suas posições para o espaço de profundidade tridimensional. A técnica baseia-se na premissa de que o sistema visual humano percebe as profundidades através das diferenças entre as imagens capturadas pelos olhos esquerdo e direito. Segundo \citeonline{lahiri2024deep}, devido ao desenvolvimento da área do aprendizado profundo, atualmente, a técnica de estimação de profundidade por meio de visão estéreo é formulada por uma tarefa de aprendizado não-supervisionado.
+
+
+
+Segundo \cite{castellano2023performance}, cada uma das técnicas de aquisição de imagens de profundidade possui lados negativos que podem impactar o seu emprego em aplicações práticas. Por exemplo, as câmeras ToF podem sofrer com invalidação de pixels próximos a cantos ou bordas de objetos devido à interferências entre os raios infravermelhos em superfícies descontínuas \cite{hansard2012time}. Outros tipos de câmeras RGB-D mais comuns podem produzir valores inválidos em superfícies muito brilhantes ou reflexivas como espelhos, superfícies metálicas ou muito escuras \cite{zollhofer2019commodity}. De acordo com \citeonline{zhang2022indepth} quando capturadas em ambientes internos, tais imagens podem conter até 50\% de dados faltantes \cite{zhang2018deep}. Dados de profundidade adquiridos por LiDAR não são densos, podendo chegar até 95\% de esparsidade, além do equipamento apresentar custo financeiro e energético elevado \cite{khan2020deep} \cite{hu2022deep}. 
 
 
 
@@ -189,3 +227,5 @@ Ainda segundo \cite{castellano2023performance}, cada uma das técnicas de aquisi
 
 
 \section{Modelos de estimação de profundidade}
+
+

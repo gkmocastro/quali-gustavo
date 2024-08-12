@@ -53,8 +53,6 @@ Neste cenário, este trabalho propõe uma análise comparativa entre os diversos
 
 \section{Motivação e Justificativa} 
 
-\textcolor{red}{tem um monte de aplicações aí de mapa de profundidade}
-
 Os recentes avanços na área de MDE propiciaram a aquisição de informação de profundidade de maneira mais precisa e rápida, dessa forma, também favorecem indiretamente as aplicações que dependem desse tipo de dado, como reconstrução 3D, navegação e veículos autônomos. Além disso, devido à facilidade de implementação dessas técnicas, também podemos citar melhoramentos em aplicações mais modernas como conteúdo gerado por Inteligência Artificial \cite{yang2024depth}.
 
 
@@ -62,6 +60,12 @@ Reconstruir estruturas 3D a partir de imagens e informação geométrica prévia
 
 
 Detectores de objetos com imagens tem sido aplicados em diversas áreas, como veículos autônomos e visão robótica, em que os sistemas necessitam estimar a localização de pedestres, veículos ou outros obstáculos. Devido à ausência informação de profundidade em imagens 2D, algumas aplicações exigem que a detecção seja feita no espaço tridimensional. O problema da detecção 3D consiste em estimar os vértices das caixas tridimensionais que contenham determinados objetos \cite{hu2022detection}. Uma das formas de adquirir a informação de profundidade necessária é através de LiDAR, entretanto, segundo \citeonline{wu2022sparse}, métodos de detecção 3D baseados somente em informação de LiDAR sofrem com a esparsidade dos dados, além do alto custo financeiro do equipamento. De acordo com \citeonline{ding2020learning} uma alternativa mais desejável é o uso de câmeras monoculares. Mapas de profundidade podem são empregados de duas formas: Transformando os mapas em representação pseudo-LiDAR, ou em sistemas multi-modais em conjunto com a informação RGB. A performance dos métodos de detecção 3D que utilizam informação de profundidade dependem da qualidade e densidade dos mesmos, portanto, as novas tecnologias de estimação monocular profundidade podem contribuir significativamente para este fim.
+
+
+\textcolor{red}{It has been shown in the state-of-the-art that monocular depth estimation methods could be
+a potential solution to address many of these challenges [23–25]. These methods perform with a
+relatively small number of operations and in less computation time. They do not require alignment
+and calibration which is important for multi-camera, or multi-sensor depth measurement systems. KHAN ET AL}
 
 
 Para que as diversas aplicações apresentadas possam funcionar de forma eficaz, é necessário garantir a correta representação de profundidade dos mapas que são utilizados como entrada dos sistemas. Dado os recentes avanços nos modelos de MDE, é possível gerar mapas de profundidade de alta qualidade, com fineza de detalhes e de forma rápida, o que cobre as desvantagens de outros tipos de aquisição. Neste cenário, o presente trabalho se justifica como um agente avaliador das tecnologias do estado da arte, tanto através de métricas numéricas, e através de uma aplicação específica. 
