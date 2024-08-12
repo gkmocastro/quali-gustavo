@@ -114,9 +114,24 @@ Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, se
 
 Uma das aplicações escolhidas foi a detecção de objetos 3D, que é uma tarefa fundamental das área de veículos autônomos. A percepção automática do ambiente ao redor do veículo ajuda-o a entender a situação para tomada de decisões e navegação. De acordo com \citeonline{ding2020learning}, um dos fatores limitantes da performance de métodos de detecção 3D é a acurácia dos mapas de profundidade. Dessa forma, o método apresentado pelo autor será utilizado como \textit{benchmark} para avaliação dos mapas gerados pelos estimadores monoculares do estado da arte.
 
-Em \citeonline{ding2020learning} é apresentado uma rede neural \textit{Depth-guided Dynamic Depthwise-Dilated Local Convolutional Network} (D4LCN). A proposta da arquitetura é gerar filtros de kernel dinâmicos e dilatados, com o processo sendo guiado a partir de mapas de profundidade. Esses filtros são aplicados nas imagens RGB em escala de pixel, fazendo assim a conexão entre as características bidimensionais e tridimensionais.
+Em \citeonline{ding2020learning} é apresentado uma rede neural \textit{Depth-guided Dynamic Depthwise-Dilated Local Convolutional Network} (D4LCN). A proposta do trabalho é gerar filtros convolucionais (kernel) dinâmicos e dilatados, com o processo sendo guiado a partir de mapas de profundidade. Esses filtros são aplicados nas imagens RGB em escala de pixel e de canal, fazendo assim a conexão entre as características bidimensionais e tridimensionais.
 
 
+Para performar a detecção 3D guiada profundidade, o autor apresentou a arquitetura da Figura \ref{fig:d4lcn}, que consiste em uma rede de dois ramos. O primeiro ramo é responsável pela extração de características da imagem RGB e possui como \textit{backbone} a rede ResNet-50 sem sua camada final completamente convolucional e sem camadas de \textit{pooling} pré-treinada na base de dados ImageNet. O segundo ramo realiza a geração dos kernels convolucionais com dilatação dinâmica a partir do mapa de profundidade para aprender as especificidades da geometria da imagem. As convoluções são aplicadas de forma a distinguir o que é objeto e o que é região de fundo para cada pixel, enquanto as dilatações dinâmicas fazem com que filtros diferentes possuam campos receptivos diferentes para objetos em diferentes escalas. As saídas de cada uma dos ramos são fusionadas por meio de um módulo de filtragem guiada por profundidade, que executa convoluções locais com diferentes kernels para cada pixel e diferentes dilatações para cada canal. 
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \caption{Arquitetura da rede D4LCN. }
+    \includegraphics[width=\textwidth]{fig/d4lcn.png}
+    \footnotesize{Fonte: \citeonline{ding2020learning}}
+    \label{fig:d4lcn}
+\end{figure}
+
+Como métrica de avaliação, seguindo o trabalho de \citeonline{ding2020learning}, serão utilizadas as curvas de precisão-recall com limiar de IoU de 0,7. A base de dados KITTI dispõe as métricas de precisão média interpolada de 11 pontos $AP|_{R_{11}}$
 
 \section{Considerações Metodológicas}
 
+sdfsadfasdf

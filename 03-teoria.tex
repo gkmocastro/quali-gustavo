@@ -40,9 +40,10 @@ Ainda segundo \citeonline{gonzalez2010processamento} o processamento digital de 
 \end{enumerate}
 
 \begin{figure}
-    \centering   
-    \includegraphics[width=\textwidth]{fig/PassosProcessamentoDigitalDeImagens.png}
-    \caption{Etapas do processamento digital de imagens que vai desde a aquisição de imagens até a identificação e descrição de objetos presente nelas.}
+    \centering 
+    \caption{Etapas do processamento digital de imagens que vai desde a aquisição de imagens até a identificação e descrição de objetos presente nelas.}  
+    \includegraphics[width=\textwidth]{fig/capsgonza.png}
+    \footnotesize{Adaptado de \citeonline{gonzalez2018digital}}
     \label{etapasProcessamentoImagens}
 \end{figure}
 
@@ -69,19 +70,32 @@ As principais funções de transformação de intensidade incluem:
 
 Assim, ao aplicar transformações de intensidade e técnicas de filtragem, é possível ajustar e melhorar imagens de maneira significativa, seja para visualização aprimorada ou para análises mais precisas.
 % EXEMPLO optional
-Considerando a transformação de intensidade ilustrada na Figura \ref{exemploTransformacaoIntensidade}.a. Como mostra \citeonline{gonzalez2010processamento}, calculando essa transformação a cada pixel da imagem original $f$, gera-se uma nova imagem $g$ com maior contraste. Nesta transformação, os valores de intensidade abaixo de um ponto $k$ são escurecidos, enquanto os valores acima de $k$ são clareados. Isso resulta em uma imagem com contraste ampliado, onde áreas escuras são mais densas e áreas claras são mais evidentes.
+Considerando a transformação de intensidade ilustrada na Figura \ref{exemploTransformacaoIntensidadea}. Como mostra \citeonline{gonzalez2010processamento}, calculando essa transformação a cada pixel da imagem original $f$, gera-se uma nova imagem $g$ com maior contraste. Nesta transformação, os valores de intensidade abaixo de um ponto $k$ são escurecidos, enquanto os valores acima de $k$ são clareados. Isso resulta em uma imagem com contraste ampliado, onde áreas escuras são mais densas e áreas claras são mais evidentes.
 
-Na Figura \ref{exemploTransformacaoIntensidade}.b, a transformação $T(r)$ resulta em uma imagem binária, onde os pixels são convertidos em apenas dois níveis de intensidade, dependendo de um limiar específico. Essa técnica, conhecida como limiarização, simplifica a imagem original em uma forma mais clara e destacada, com apenas duas cores, tipicamente preto e branco.
+Na Figura \ref{exemploTransformacaoIntensidadeb}, a transformação $T(r)$ resulta em uma imagem binária, onde os pixels são convertidos em apenas dois níveis de intensidade, dependendo de um limiar específico. Essa técnica, conhecida como limiarização, simplifica a imagem original em uma forma mais clara e destacada, com apenas duas cores, tipicamente preto e branco.
 
 Essas transformações são exemplos de como ajustes nos valores de intensidade podem alterar significativamente a aparência e a utilidade da imagem, dependendo do objetivo do processamento.
 
-\begin{figure}[h]
-    \centering   
-    \includegraphics[width=\textwidth]{fig/ExemploTranformacaoIntensidade.png}
-    \caption{Funções para ajuste da intensidade em imagens. (a) Método de ampliação de contraste, que aumenta a diferença entre os níveis de intensidade, destacando áreas mais escuras e mais claras. (b) Método de binarização, que converte a imagem em dois níveis distintos de intensidade, geralmente preto e branco, com base em um limiar definido.}
-    \label{exemploTransformacaoIntensidade}
-\end{figure}
+% \begin{figure}[h]
+%     \centering   
+%     \includegraphics[width=\textwidth]{fig/ExemploTranformacaoIntensidade.png}
+%     \caption{}
+%     \label{exemploTransformacaoIntensidade}
+% \end{figure}
 
+
+\begin{figure}[H]
+    \centering
+    \caption{Funções para ajuste da intensidade em imagens. (a) Método de ampliação de contraste, que aumenta a diferença entre os níveis de intensidade, destacando áreas mais escuras e mais claras. (b) Método de binarização, que converte a imagem em dois níveis distintos de intensidade, geralmente preto e branco, com base em um limiar definido.}
+    \subfigure[\label{exemploTransformacaoIntensidadea}]{
+    \includegraphics[width=.45\textwidth]{fig/transform1.png}
+    } % end subfigure
+    \quad % dá um espaço entre as duas figuras.
+    \subfigure[\label{exemploTransformacaoIntensidadeb}]{
+    \includegraphics[width=.45\textwidth]{fig/transform2.png}
+    } % end subfigure
+    \footnotesize{Adaptado de \citeonline{gonzalez2018digital}}
+    \end{figure}
 
 \section{Deep Learning}
 
@@ -108,10 +122,11 @@ onde $y$ é a saída do perceptron, $x_i$ são as entradas, $w_i$ são os pesos 
 
 A Figura \ref{fig:perceptron} ilustra visualmente a estrutura de um perceptron, mostrando as entradas, pesos, soma ponderada, bias, função de ativação e uma saída.
 
-\begin{figure}
-    \centering   
-    \includegraphics[width=0.7\textwidth]{fig/perceptron.png}
-    \caption{Diagrama de um perceptron, ilustrando uma abordagem simplificada baseada na estrutura e função de um neurônio biológico.}
+\begin{figure}[hb!]
+    \centering  
+    \caption{Diagrama de um perceptron, ilustrando uma abordagem simplificada baseada na estrutura e função de um neurônio biológico.} 
+    \includegraphics[width=0.9\textwidth]{fig/perceptron.png}
+    \footnotesize{Adaptado de \citeonline{haykin2009neural}}
     \label{fig:perceptron}
 \end{figure}
 
