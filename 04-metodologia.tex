@@ -83,7 +83,7 @@ O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é u
 
 \section{Método de Transformação de Intensidades (pós-processamento)}
 
-Um mapa de profundidade inferido por um método de estimação de profundidade possui a característica de ser denso, pois todos os pixels possuem um valor predito associado, preciso, bem detalhado, de acordo com os últimos trabalhos do estado da arte porém é relativo, i.e. o valor de cada pixel é apenas correlacionado com a medição de distância real por um fator desconhecido. Já um mapa de profundidade adquirido com um sensor físico consegue representar as grandezas de forma métrica (em metros, centímetros ou até milimétros), mas pode ter características negativas associadas a depender do dispositivo de aquisição, podendo conter áreas falhas que não possuem medição associada, ou um elevado grau de esparsidade. O método de transformação de intensidades para transferência de domínio almeja como resultado uma imagem de profundidade que possuam as características positivas dos dois casos anteriormente citados. 
+Um mapa de profundidade inferido por um método de estimação de profundidade possui a característica de ser denso, pois todos os pixels possuem um valor predito associado, preciso, bem detalhado, de acordo com os últimos trabalhos do estado da arte porém é relativo, i.e. o valor de cada pixel é apenas correlacionado com a medição de distância real por um fator desconhecido. Já um mapa de profundidade adquirido com um sensor físico consegue representar as grandezas de forma métrica (em metros, centímetros ou até milímetros), mas pode ter características negativas associadas a depender do dispositivo de aquisição, podendo conter áreas falhas que não possuem medição associada, ou um elevado grau de esparsidade. O método de transformação de intensidades para transferência de domínio almeja como resultado uma imagem de profundidade que possuam as características positivas dos dois casos anteriormente citados. 
 
 O método proposto por este trabalho consiste em uma transformação de intensidades que é projetada para cada imagem de um conjunto de dados utilizando pontos correspondentes em ambas e associando uma transformação linear para cada ponto, como visualizado na Figura \ref{posproc}. 
 
@@ -97,12 +97,12 @@ O método proposto por este trabalho consiste em uma transformação de intensid
 
 O método proposto diferencia-se do tradicional baseado em fator de escala e deslocamento por mínimos quadrados pois é associada uma função linear para cada região na quantização da imagem, o que propicia uma correção adaptada para cada proporção de distância. Ressalta-se que o método não será utilizado no protocolo de avaliação dos modelos de estimação de profundidade.
 
-será realizada a comparação do resultado da técnica de pós-processamento e o resultado de estimadores métricos de profundidade com os conjuntos de dados que possuem leituras métricas de sensores.
+Será realizada a comparação do resultado da técnica de pós-processamento e o resultado de estimadores métricos de profundidade com os conjuntos de dados que possuem leituras métricas de sensores.
 
 
 \section{Análise com Aplicação}
 
-Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, será utilizada também uma ou mais aplicações práticas. O processo de escolha da aplicação a ser implementada e avaliada passa por três principais critérios, entre eles: 
+Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, será utilizada também uma ou mais aplicações práticas. O processo de escolha da aplicação a ser implementada e avaliada passa por três principais critérios, sendo eles: 
 
 \begin{itemize}
     \item Empregar diretamente como entrada do sistema um mapa de profundidade denso.
@@ -110,7 +110,11 @@ Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, se
     \item Ter o seu desempenho mensurável através de métricas. 
 \end{itemize}
 
+\subsection{Detecção de objetos 3D}
 
+Uma das aplicações escolhidas foi a detecção de objetos 3D, que é uma tarefa fundamental das área de veículos autônomos. A percepção automática do ambiente ao redor do veículo ajuda-o a entender a situação para tomada de decisões e navegação. De acordo com \citeonline{ding2020learning}, um dos fatores limitantes da performance de métodos de detecção 3D é a acurácia dos mapas de profundidade. Dessa forma, o método apresentado pelo autor será utilizado como \textit{benchmark} para avaliação dos mapas gerados pelos estimadores monoculares do estado da arte.
+
+Em \citeonline{ding2020learning} é apresentado uma rede neural \textit{Depth-guided Dynamic Depthwise-Dilated Local Convolutional Network} (D4LCN). A proposta da arquitetura é gerar filtros de kernel dinâmicos e dilatados, com o processo sendo guiado a partir de mapas de profundidade. Esses filtros são aplicados nas imagens RGB em escala de pixel, fazendo assim a conexão entre as características bidimensionais e tridimensionais.
 
 
 
