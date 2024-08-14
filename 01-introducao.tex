@@ -31,6 +31,8 @@ Para capturar tais imagens geralmente são empregadas câmeras RGB-D, que podem 
 
 %problemas 27, 80, 98
 
+\textbf{Problemática} 
+
 Garantir a correta representação dos mapas em escala de pixel é de considerável importância para as tarefas que dependem de profundidade e que requerem um alto grau de segurança e confiabilidade dos dados, como veículos autônomos ou navegação de drones. A tecnologia LiDAR é a alternativa com implementação mais confiável entre as que foram citadas, no entanto, ressalta-se que nem o LiDAR e nem câmeras RGB-D convencionais produzem mapas completos e densos. No caso do LiDAR, são produzidos mapas esparsos (approx. 95\% de esparsidade) e no caso de câmeras RGB-D ou câmeras ToF são produzidos mapas com partes faltantes em determinadas superfícies ou bordas \cite{hu2012robust}. 
 
 
@@ -68,21 +70,21 @@ Detectores de objetos com imagens tem sido aplicados em diversas áreas, como ve
 
 Segundo \citeonline{khan2020deep}, é evidente o potencial da estimação monocular para problemas de aplicações que envolvam informação de profundidade. Para que as diversas aplicações apresentadas possam funcionar de forma eficaz, é necessário garantir a correta representação dos mapas que são utilizados como entrada dos sistemas. Dado os recentes avanços nos modelos de MDE, tornou-se possível gerar mapas de profundidade de alta qualidade, com fineza de detalhes e de forma rápida, o que cobre as desvantagens de outros tipos de aquisição. 
 
-Neste cenário, faz-se necessária a avaliação dos diversos modelos e técnicas de estimação monocular de profundidade do estado da arte, analisando tanto a sua capacidade de gerar mapas densos e precisos quanto à sua empregabilidade em aplicações práticas que envolvam informação de profundidade, que é a proposta do presente trabalho.
+Devido aos melhoramentos possíveis nas aplicações que utilizam informação de profundidade, faz-se necessária a avaliação dos diversos modelos e técnicas de estimação monocular de profundidade do estado da arte, analisando tanto a sua capacidade de gerar mapas densos e precisos quanto à sua empregabilidade em aplicações práticas que envolvam informação de profundidade, que é a proposta do presente trabalho.
 
  
 \section{Objetivos}
 
 
 \subsection{Objetivo Geral}
-Este trabalho possui como objetivo geral a análise comparativa de estimadores monoculares de profundidade robustos capazes de produzir informação de profundidade de alta qualidade para imagens sob quaisquer circunstâncias.
+Este trabalho possui como objetivo geral a análise comparativa de estimadores monoculares de profundidade capazes de produzir informação de profundidade de alta qualidade para imagens sob quaisquer circunstâncias.
 
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
     \item Estudo e escolha dos datasets que contenham imagens apropriadas para teste.
-    \item Estudo de modelos de estimação monocular de profundidade relativa do estado da arte.
-    \item Análise e escolha entre os modelos estudados para implementação e testes.
+    \item Estudo de modelos de estimação monocular de profundidade relativa baseados em aprendizado profundo do estado da arte.
+    \item Análise e escolha entre os modelos estudados para implementação e testes visando eficiência, rapidez, robustez ou outros parâmetros a escolher.
     \item Avaliação de desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
     \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
     \item Avaliação qualitativa dos resultados.
@@ -90,3 +92,6 @@ Este trabalho possui como objetivo geral a análise comparativa de estimadores m
     
 \end{itemize}
 
+
+
+\section{Resultados Esperados}

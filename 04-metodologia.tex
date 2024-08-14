@@ -77,20 +77,41 @@ Os dados foram capturado por meio de um veículo equipado com diversos tipos de 
     \label{fig:kittiexample}
 \end{figure}
 
+\newpage
 
 \subsection{SINTEL}
 
-O Sintel é uma base de dados criada a partir de uma projeto aberto de animação CGI (\textit{Computer-Generated Imagery}) chamado \textit{Durian Open Source Movie Project}. Foi elaborado no \textit{software} Blender e contém os arquivos fontes utilizados na criação do filme animado. Em \cite{wulff2012lessons}, os autores adaptaram os arquivos brutos em uma base de dados primariamente utilizada para o problema de visão computacional de estimação de fluxo ótico. Apesar do seu uso primário ser em outra área, ele também contém anotações de profundidade das imagens.
+O Sintel é uma base de dados sintéticos criada a partir de uma projeto aberto de animação em CGI (\textit{Computer-Generated Imagery}) chamado \textit{Durian Open Source Movie Project}. Foi elaborado no \textit{software} Blender e contém os arquivos fontes utilizados na criação do filme animado. Em \cite{Butler:ECCV:2012}, os autores adaptaram os arquivos brutos em uma base de dados primariamente utilizada para o problema de visão computacional de estimação de fluxo ótico. Apesar do seu uso primário ser em outra tarefa, ele também contém anotações de profundidade das imagens. A Figura \ref{fig:sintelexample} mostra um quadro renderizado e seu mapa de profundidade calculado.
 
-A base de dados contém um total de 35 cenas, cada uma possuindo entre 20 a 50 quadros, totalizando 1628 imagens. A resolução de renderização é de 1024 $\times$ 436 em 24 FPS (\textit{Frames Per Second}). As cenas possuem como características presentes efeitos atmosféricos, efeitos de movimento, desfoque em razão de velocidade e alta variabilidade de ambientes, personagens e ações. É dividido em 1064 quadros para o conjunto de treinamento e 564 para teste, sendo anotadas apenas as imagens de treinamento. 
+\begin{figure}[h]
+    \centering
+    \caption{Exemplo do \textit{dataset} Sintel}
+    \includegraphics[width=.6\textwidth]{fig/sintel_example.png}
+    \caption*{Fonte: \textit{Dataset} Sintel, do trabalho de \citeonline{Butler:ECCV:2012}}
+    \label{fig:sintelexample}
+\end{figure}
+
+
+A base de dados contém um total de 35 cenas, cada uma possuindo entre 20 a 50 quadros, totalizando 1628 imagens. A resolução de renderização é de 1024 $\times$ 436 em 24 FPS (\textit{Frames Per Second}). As cenas possuem como características presentes efeitos atmosféricos, efeitos de movimento, desfoque em razão de velocidade e alta variabilidade de ambientes, personagens e ações. É dividido em 1064 quadros para o conjunto de treinamento e 564 para teste, sendo anotadas apenas as imagens de treinamento \cite{wulff2012lessons}. 
+
+
 
 \subsection{ETH3D}
 
 O ETH3D é uma base de dados geralmente utilizada para reconstrução em vistas múltiplas e \textit{stereo matching}. Contém dados de treinamento com imagens RGB \textit{multiview}, capturadas com câmeras DSLR (\textit{Digital Single Lens Reflex}) e anotações de profundidade capturadas utilizando um scanner a laser Faro Focus X 330. Oferece três versões de imagens de profundidade, uma correspondente à leitura bruta do sensor (\textit{raw}), outra com valores extremos removidos por trabalho manual e uma ferramenta automática (\textit{clean}) e uma com valores extremos e pontos observados por uma única imagem RGB removidos. A partição de teste não contém anotações. A base de dados é associada à um desafio aberto ao público. Inclui cenas tanto internas quanto externas, oferecendo um protocolo de avaliação bem variado \cite{lahiri2024deep} \cite{schops2019bad}. 
 
+\begin{figure}[h]
+    \centering
+    \caption{Exemplo do \textit{dataset} ETH3D}
+    \includegraphics[width=.6\textwidth]{fig/eth3d_example.png}
+    \caption*{Fonte: \textit{Dataset} ETH3D, do trabalho de \citeonline{schoeps2017cvpr}}
+    \label{fig:eth3dexample}
+\end{figure}
+
+
 \subsection{DIODE}
 
-O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é uma base de dados para estimação monocular de profundidade e consiste em 8574+25 imagens de ambientes internos e 16.884+446 de ambientes externos para treinamento e teste. Possui resolução de 768 $\times$ 1024 com faixa de distâncias entre 50m e 300m para os ambientes internos e externos respectivamente. O equipamento de aquisição é o scanner a laser Faro Focus S350. Alguns exemplos do \textit{dataset} podem ser visualizados na Figura \ref{exdiode} \cite{diode_dataset}.
+O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é uma base de dados para estimação monocular de profundidade e possui cerca de 8.000 imagens de ambientes internos e 16.000 de ambientes externos para treinamento e teste. Possui resolução de 768 $\times$ 1024 com faixa de distâncias entre 50m e 300m para os ambientes internos e externos respectivamente. O equipamento de aquisição é o scanner a laser Faro Focus S350. Alguns exemplos do \textit{dataset} podem ser visualizados na Figura \ref{exdiode} \cite{diode_dataset}.
 
 \begin{figure}[h]
     \centering
