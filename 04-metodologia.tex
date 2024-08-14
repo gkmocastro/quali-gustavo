@@ -47,7 +47,7 @@ Dessa forma, para escolha das bases de dados a serem utilizadas para teste, temo
 
 %% refazer o texto
 
-O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computacional que envolvam estimação de profundidade, segmentação de cenas e reconecimento de objetos. Possui 1449 pares de imagens RGB e mapas de profundidade densos em diversas cenas \textit{indoor} divididos em 795 para treinamento e 654 para teste \cite{silberman2012indoor}. A resolução das imagens é de 640 $\times$ 480 pixels. O equipamento de aquisição foi o equipamento Microsoft Kinect que utiliza a técnica de emissão de luz estruturada, que produz resultados precisos de informação de profundidade. Além dos pares RGB-D, também é disponibilizado os dados de leitura dos sensores puros em que é possível encontrar aproximadamente 70\% de pixels com informação válida de profundidade, no entanto, as imagens finais foram processadas utilizando um método de correção, resultando em um mapa denso, como observado na Figura \ref{exnyuv2}. Entre as cenas observadas no \textit{dataset}, podemos citar quartos, cozinhas, sala de aula, banheiro e etc. Além das informações de profundidade, a base de dados provém rótulos de segmentação de objetos e relações de suporte entre eles \cite{lahiri2024deep}.
+O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computacional que envolvam estimação de profundidade, segmentação de cenas e reconhecimento de objetos. Possui 1449 pares de imagens RGB e mapas de profundidade densos em diversas cenas \textit{indoor} divididos em 795 para treinamento e 654 para teste \cite{silberman2012indoor}. A resolução das imagens é de 640 $\times$ 480 pixels. O equipamento de aquisição foi o equipamento Microsoft Kinect que utiliza a técnica de emissão de luz estruturada, que produz resultados precisos de informação de profundidade. Além dos pares RGB-D, também é disponibilizado os dados brutos de leitura dos sensores em que é possível encontrar aproximadamente 70\% de pixels com informação válida de profundidade, no entanto, as imagens finais foram processadas utilizando um método de correção, resultando em um mapa denso, como observado na Figura \ref{exnyuv2}. Entre as cenas observadas no \textit{dataset}, podemos citar quartos, cozinhas, sala de aula, banheiro e etc. Além das informações de profundidade, a base de dados provém rótulos de segmentação de objetos e relações de suporte entre eles \cite{lahiri2024deep}.
 
 \begin{figure}[h]
     \centering
@@ -80,6 +80,14 @@ O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é u
 \section{Modelos Escolhidos}
 
 \section{Protocolo de Avaliação}
+
+
+Two types of metrics used for evaluation are the depth accuracy metric and the depth error metric. Depth accuracy
+metrics measure the accuracy as the percentage of pixels that exceed a predeined threshold error. Depth error
+metrics, on the other hand, provide the deviation of the estimated depth from the expected depth. A model
+performs better than others if the results for accuracy metrics are high or the results for error metrics are low.
+The evaluation metrics commonly used in the literature are summarized in Table 4 (Section G in Appendix A). - rajapaksha2024deep
+
 
 \section{Método de Transformação de Intensidades (pós-processamento)}
 

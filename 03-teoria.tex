@@ -43,7 +43,7 @@ Ainda segundo \citeonline{gonzalez2010processamento} o processamento digital de 
     \centering 
     \caption{Etapas do processamento digital de imagens que vai desde a aquisição de imagens até a identificação e descrição de objetos presente nelas.}  
     \includegraphics[width=\textwidth]{fig/capsgonza.png}
-    \footnotesize{Adaptado de \citeonline{gonzalez2018digital}}
+    \caption*{Adaptado de \citeonline{gonzalez2018digital}}
     \label{etapasProcessamentoImagens}
 \end{figure}
 
@@ -94,7 +94,7 @@ Essas transformações são exemplos de como ajustes nos valores de intensidade 
     \subfigure[\label{exemploTransformacaoIntensidadeb}]{
     \includegraphics[width=.45\textwidth]{fig/transform2.png}
     } % end subfigure
-    \footnotesize{Adaptado de \citeonline{gonzalez2018digital}}
+    \caption*{Adaptado de \citeonline{gonzalez2018digital}}
     \end{figure}
 
 \section{Deep Learning}
@@ -126,7 +126,7 @@ A Figura \ref{fig:perceptron} ilustra visualmente a estrutura de um perceptron, 
     \centering  
     \caption{Diagrama de um perceptron, ilustrando uma abordagem simplificada baseada na estrutura e função de um neurônio biológico.} 
     \includegraphics[width=0.9\textwidth]{fig/perceptron.png}
-    \footnotesize{Adaptado de \citeonline{haykin2009neural}}
+    \caption*{Adaptado de \citeonline{haykin2009neural}}
     \label{fig:perceptron}
 \end{figure}
 
@@ -199,14 +199,23 @@ Um exemplo clássico de CNN é a arquitetura LeNet-5, desenvolvida por Yann LeCu
 
 % o que é
 
-De acordo com \citeonline{khan2020deep}, o conceito de estimação de profundidade refere-se ao processo de preservar a informação tridimensional de uma cena a partir de informação bidimensional capturada por câmeras. Mapas de profundidade são imagens que caracterizam esse conceito, e podem ser representadas por imagens em escala de cinza onde os tons dos pixels são definidos de acordo com sua distância correspondente na cena original \cite{dourado2020multi}. 
+De acordo com \citeonline{khan2020deep}, o conceito de estimação de profundidade refere-se ao processo de preservar a informação tridimensional de uma cena a partir de uma imagem bidimensional capturada por câmeras. Mapas de profundidade são imagens que caracterizam esse conceito, e podem ser representadas por imagens em escala de cinza onde os tons dos pixels são definidos de acordo com sua distância correspondente na cena original \cite{dourado2020multi}. A Figura \ref{fig:depthmap} exibe uma imagem RGB e dois mapas de profundidade, um em escala de cinza e outro colorizado para visualização.
 
-\textcolor{red}{EXEMPLO DE MAPA DE PROFUNDIDADE}
 
+De acordo com \citeonline{foley2019sensation}, as distâncias aos objetos em uma cena são percebidas pelo sistema visual humano por meio de pistas visuais monoculares. Entre elas, podemos citar :
+
+\begin{itemize}
+    \item \textbf{Oclusão}: Quando um objeto é parcialmente coberto por outro, então é considerado mais distante.
+    \item \textbf{Perspectiva}: As linhas paralelas que se encontram no horizonte ajudam a perceber as distâncias dos objetos.
+    \item \textbf{Tamanho}: Objetos maiores são percebidos como mais próximos, enquanto objetos menores são percebidos mais distantes.
+    \item \textbf{Gradiente de textura}: A textura de uma superfície fica mais densa de acordo com o aumento da distância ao observador.
+    \item \textbf{Perspectiva atmosférica}: Refere-se à percepção de desfoque em objetos mais distantes.
+    \item \textbf{Luz e sombra}: Percepção de profundidade a partir das projeções das sombras dos objetos.
+    \item \textbf{Altura}: Objetos próximos à linha do horizonte são percebidos mais distantes.
+\end{itemize}
 
 %% como é capturado
 
-Segundo \citeonline{rajapaksha2024deep}, as distâncias aos objetos em uma cena são percebidas pelos olhos humanos por meio de pistas visuais como o horizonte, pontos de fuga, tamanho relativo de objetos conhecidos, luz e sombra, e gradiente de textura.  
 
 
 
@@ -216,7 +225,19 @@ Segundo \citeonline{rajapaksha2024deep}, as distâncias aos objetos em uma cena 
 % and Ranging (SONAR) são tecnologias que desempenham o papel de extrair dados de
 % profundidade do ambiente e, além disso, são amplamente comercializadas. \cite{de2021aprendizagem}
 
-Sensores de profundidade estão cada vez mais embarcados em equipamentos amplamente difundidos como dispositivos de realidade aumentada (Occulus, Kinect) e até mesmo em smartphones \cite{du2020depthlab}, principalmente as câmeras ToF, pois são capazes de desempenhar de maneira satisfatória mesmo com baixa potência \cite{branscombe2018microsoft}. De acordo com \cite{xie2021ultradepth}, a adoção de sensores de profundidade em smartphones tende a aumentar nos próximos anos, com diversas aplicações como tradução de linguagem de sinais \cite{park2021enabling} e sistemas de navegação mobile para pessoas com deficiência visual \cite{see2022smartphone}. 
+Sensores de profundidade estão cada vez mais embarcados em equipamentos amplamente difundidos como dispositivos de realidade aumentada e até mesmo em smartphones \cite{du2020depthlab}, principalmente as câmeras ToF, pois são capazes de desempenhar de maneira satisfatória mesmo com baixa potência \cite{branscombe2018microsoft}. De acordo com \cite{xie2021ultradepth}, a adoção de sensores de profundidade em smartphones tende a aumentar nos próximos anos, com diversas aplicações como tradução de linguagem de sinais \cite{park2021enabling} e sistemas de navegação mobile para pessoas com deficiência visual \cite{see2022smartphone}. 
+
+\begin{figure}[h]
+    \centering   
+    \caption{Exemplo de Mapa de Profundidade.}
+    \includegraphics[width=\textwidth]{fig/example_depth.png}
+    \caption*{Fonte: \cite{Silberman:ECCV12}}
+    \label{fig:depthmap}
+\end{figure}
+
+
+
+
 
 Diversos tipos de técnicas são atualmente empregadas para adquirir informação de profundidade. Os métodos de aquisição de imagens de profundidade são divididos em duas categorias. Métodos ativos de estimação de profundidade envolvem calcular as distâncias interagindo fisicamente com os objetos do ambiente. Ultrassom e sensores \textit{Time of Flight} (ToF) por exemplo, utilizam da emissão de ondas com velocidade conhecida e medem o tempo de retorno a um receptor. Métodos passivos, por outro lado, envolvem a extração da informação através de processamento de imagens como visão estéreo e estimação monocular de profundidade \cite{khan2020deep}. 
 
@@ -224,25 +245,63 @@ De acordo com \citeonline{hansard2012time}, o funcionamento de câmeras ToF cons
 
 \begin{figure}[h]
     \centering   
+    \caption{Princípio de funcionamento de câmeras ToF.}
     \includegraphics[width=0.8\textwidth]{fig/tof_cameras.png}
-    \caption{Princípio de funcionamento de câmeras ToF. Fonte: \cite{hansard2012time}}
+    \caption*{Fonte: \cite{hansard2012time}}
     \label{fig:tof}
 \end{figure}
 
- O primeiro, chamado de ToF ponto-a-ponto, utiliza um mecanismo de inclinação panorâmica para obter uma sequência temporal de medições do tempo de retorno a cada ponto, essa técnica é conhecida como \textit{Light Detection and Ranging} (LiDAR). Esse tipo de técnica é empregada com maior frequência em sensoreamento em ambientes externos, por exemplo, sensores veiculares. Além disso, entre as vantagens desse tipo de tecnologia podemos citar a sua boa performance mesmo em cenários de baixa luminosidade ou em movimento e sua alta resolução e acurácia da informação adquirida \cite{zollhofer2019commodity}.
+ As câmeras ToF se dividem em dois tipos de acordo com o método de medição de distância. O primeiro, chamado de ToF ponto-a-ponto, utiliza um mecanismo de inclinação panorâmica para obter uma sequência temporal de medições do tempo de retorno de um laser infravermelho, essa técnica é conhecida como \textit{Light Detection and Ranging} (LiDAR). Esse tipo de dispositivo é empregado com maior frequência em ambientes externos, por exemplo, sensores embarcados em veículos. Além disso, entre as vantagens desse tipo de tecnologia podemos citar a sua boa performance mesmo em cenários de baixa luminosidade ou em movimento e sua alta resolução e acurácia da informação adquirida \cite{zollhofer2019commodity}. Um exemplo de câmera LiDAR é o Intel RealSense L515, mostrado na Figura \ref{fig:lidar}.
 
+ \begin{figure}[h]
+    \centering
+    \caption{Câmera LiDAR Intel RealSense L515.}
+    \includegraphics[width=.4\textwidth]{fig/lidar_cams.png}
+    \caption*{Fonte: \cite{castellano2023performance}}
+    \label{fig:lidar}
+\end{figure}
 
-O segundo tipo é chamado de ToF modulado, em que uma câmera utiliza um pulso contínuo modulado em uma determinada frequência. A onda recebida é processada por um detector de desvio de fase. Um exemplo desse tipo de câmera é o Microsoft Kinect \cite{zollhofer2019commodity}.
+O segundo tipo é chamado de ToF modulado, em que uma câmera utiliza um pulso contínuo modulado em uma determinada frequência. A onda recebida é processada por um detector de desvio de fase. Um exemplo de dispositivo que usa desse mecanismo é o Microsoft Kinect (Figura \ref{fig:kinect}) \cite{zollhofer2019commodity}.
 
-De acordo com \citeonline{szeliski2022computer}, o termo correspondência estéreo (do inglês, \textit{Stereo Matching}) refere-se ao processo de construir um modelo 3D de uma cena por meio da busca de pixels correspondentes em pelo menos duas imagens 2D, convertendo assim, suas posições para o espaço de profundidade tridimensional. A técnica baseia-se na premissa de que o sistema visual humano percebe as profundidades através das diferenças entre as imagens capturadas pelos olhos esquerdo e direito. Segundo \citeonline{lahiri2024deep}, devido ao desenvolvimento da área do aprendizado profundo, atualmente, a técnica de estimação de profundidade por meio de visão estéreo é formulada por uma tarefa de aprendizado não-supervisionado.
+\begin{figure}[h]
+    \centering
+    \caption{Microsoft Kinect.}
+    \includegraphics[width=.6\textwidth]{fig/kinect.jpg}
+    \caption*{Fonte: \cite{kinect}}
+    \label{fig:kinect}
+\end{figure}
 
+De acordo com \citeonline{szeliski2022computer}, o termo correspondência estéreo (do inglês, \textit{Stereo Matching}) refere-se ao processo de construir um modelo 3D de uma cena por meio da busca de pixels correspondentes em pelo menos duas imagens 2D. Técnicas estereoscópicas de estimação de profundidade usam câmeras com duas lentes (ou duas câmeras separadas) em perspectivas diferentes, resultando em uma imagem de disparidade, que pode ser processada em um mapa de profundidade \cite{castellano2023performance}. A técnica baseia-se na premissa de que o sistema visual humano percebe as profundidades através das diferenças entre as imagens capturadas pelos olhos esquerdo e direito. O esquema de configuração básica de um sistema de correspondência estéreo é ilustrado na figura \ref{fig:stereo}. Segundo \citeonline{lahiri2024deep}, devido ao desenvolvimento da área do aprendizado profundo, atualmente, a técnica de estimação de profundidade por meio de visão estéreo é formulada por uma tarefa de aprendizado não-supervisionado.
 
+\begin{figure}[h!]
+    \centering
+    \caption{Um sistema de correspondência estéreo genérico. }
+    \includegraphics[width=.6\textwidth]{fig/stereo_cams.png}
+    \caption*{Fonte: \cite{zollhofer2019commodity}}
+    \label{fig:stereo}
+\end{figure}
 
-Segundo \cite{castellano2023performance}, cada uma das técnicas de aquisição de imagens de profundidade possui lados negativos que podem impactar o seu emprego em aplicações práticas. Por exemplo, as câmeras ToF podem sofrer com invalidação de pixels próximos a cantos ou bordas de objetos devido à interferências entre os raios infravermelhos em superfícies descontínuas \cite{hansard2012time}. Outros tipos de câmeras RGB-D mais comuns podem produzir valores inválidos em superfícies muito brilhantes ou reflexivas como espelhos, superfícies metálicas ou muito escuras \cite{zollhofer2019commodity}. De acordo com \citeonline{zhang2022indepth} quando capturadas em ambientes internos, tais imagens podem conter até 50\% de dados faltantes \cite{zhang2018deep}. Dados de profundidade adquiridos por LiDAR não são densos, podendo chegar até 95\% de esparsidade, além do equipamento apresentar custo financeiro e energético elevado \cite{khan2020deep} \cite{hu2022deep}.
+Segundo \cite{castellano2023performance}, cada uma das técnicas de aquisição de imagens de profundidade possui lados negativos que podem impactar o seu emprego em aplicações práticas. Por exemplo, as câmeras ToF  podem sofrer com invalidação de pixels em cantos ou bordas dos objetos devido a saturação do sinal infravermelho, outro tipo de área afetada são superfícies reflexivas ou metálicas \cite{zollhofer2019commodity}. De acordo com \citeonline{zhang2022indepth} quando capturadas em ambientes internos, tais imagens podem conter até 50\% de dados faltantes. Dados de profundidade adquiridos por LiDAR não são densos, podendo chegar até 95\% de esparsidade, além do equipamento apresentar custo financeiro e energético elevado \cite{khan2020deep} \cite{hu2022deep}. Uma das desvantagens presentes nos sistemas estéreo é a presença de ruído devido a má triangulação de objetos com características pouco distinguíveis \cite{castellano2023performance}.
 
 
 Compondo a lista de métodos passivos, a estimação de profundidade monocular refere-se ao processo de regredir um mapa de profundidade denso a partir de uma única imagem de câmera monocular \cite{birkl2023midas}. Segundo \citeonline{ranftl2020towards}, este ainda é um problema desafiador, visto que envolve a compreensão de pistas visuais, contexto de cenas e conhecimento prévio dos objetos para deduzir as relações geométricas da cena, o que implica na necessidade de técnicas baseadas em aprendizado. Com o desenvolvimento da área da inteligência artificial, técnicas mais robustas começaram a ser empregadas para estimação de profundidade. 
 
+\begin{figure}[h!]
+    \centering
+    \caption{Um sistema de estimação monocular de profundidade por aprendizado profundo.}
+    \includegraphics[width=.9\textwidth]{fig/monocular.png}
+    \caption*{Elaborado pelo autor.}
+    \label{fig:monoestim}
+\end{figure}
 
-Segundo \citeonline{mertan2022single} um dos desafios que são intrínsecos ao problema de estimação monocular de profundidade é a ambiguidade. A partir de uma única imagem RGB podem haver um número muito grande de possíveis resultados 3D, ou seja, é caracterizado um problema de mapeamento onde cada entrada pode gerar muitas saídas. Por isso é considerado um problema mal-posto, ou do inglês, \textit{ill posed problem}.
+Segundo \citeonline{mertan2022single} um dos desafios que são intrínsecos ao problema de estimação monocular de profundidade é a ambiguidade. A partir de uma única imagem RGB podem haver um número muito grande de possíveis resultados 3D, ou seja, é caracterizado um problema de mapeamento onde cada entrada pode gerar muitas saídas. Por isso é considerado um problema mal-posto, ou do inglês, \textit{ill posed problem}. O problema da ambiguidade pode ser ilustrado pela Figura \ref{fig:ambiguity}, em que a cadeira é percebida na primeira imagem como menor do que realmente é, e quando posta em comparação com o tamanho médio de uma pessoa, seu tamanho real fica claro. A percepção humana de profundidade baseia-se principalmente no conhecimento prévio dos tamanhos dos objetos. Ao olhar uma imagem RGB, o sistema visual humano estima a cena 3D mais provável entre inúmeras possibilidades geométricas. 
+
+
+\begin{figure}[h!]
+    \centering
+    \caption{Um exemplo de ilusão de ótica}
+    \includegraphics[width=.9\textwidth]{fig/ambiguity.png}
+    \caption*{Fonte: \citeonline{mertan2022single}}
+    \label{fig:ambiguity}
+\end{figure}
 
