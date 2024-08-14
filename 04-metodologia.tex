@@ -51,19 +51,38 @@ Dessa forma, para escolha das bases de dados a serem utilizadas para teste, temo
 
 O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computacional que envolvam estimação de profundidade, segmentação de cenas e reconhecimento de objetos. Possui 1449 pares de imagens RGB e mapas de profundidade densos em diversas cenas \textit{indoor} divididos em 795 para treinamento e 654 para teste \cite{silberman2012indoor}. A resolução das imagens é de 640 $\times$ 480 pixels. O equipamento de aquisição foi o Microsoft Kinect que utiliza a técnica de ToF ponto a ponto, que produz resultados precisos de informação de profundidade. Além dos pares RGB-D, também são disponibilizados os dados brutos de leitura dos sensores em que é possível encontrar aproximadamente 70\% de pixels com informação válida de profundidade, no entanto, as imagens finais foram processadas utilizando um método de correção, resultando em um mapa denso,  Além das informações de profundidade, a base de dados provém rótulos de segmentação de objetos e relações de suporte \cite{lahiri2024deep}, como observado na Figura \ref{exnyuv2} que ilustra um exemplo. Entre as cenas observadas, podemos citar cômodos comuns de casas como quartos, cozinhas, sala de aula, banheiro e etc \cite{silberman2012indoor}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \caption{Exemplo do \textit{dataset} NYU Depth v2}
-    \includegraphics[width=\textwidth]{fig/example_nyu.png}
+    \includegraphics[width=.8\textwidth]{fig/example_nyu.png}
     \caption*{Fonte: \textit{Dataset} NYU Depth V2, do trabalho de \citeonline{silberman2012indoor}}
     \label{exnyuv2}
 \end{figure}
 
+\newpage
+
 \subsection{KITTI}
 
+Com o objetivo de impulsionar o desenvolvimento da área de veículos autônomos, o trabalho de \citeonline{Geiger2012CVPR} apresenta o \textit{benchmark} KITTI. Este \textit{benchmark} possui bases de dados para diversos tipos de tarefas de visão computacional relacionadas à navegação de veículos, tais como, visão estéreo, fluxo ótico, correção de mapas de profundidade, estimação de profundidade, odometria, detecção de objetos 2D e 3D, rastreamento de veículos e pessoas, detecção de pavimentação urbana e segmentação semântica. 
+
+
+
+Os dados foram capturado por meio de um veículo equipado com diversos tipos de sensores, por exemplo, câmeras RGB, scanner a laser, GPS (\textit{Global Positioning System}) de alta precisão e IMU (\textit{Inertia Measurement Unit}). Além disso, as imagens RGB utilizando um par de câmeras em estereoscopia e os dados de profundidade foram adquiridos com um sensor Velodyne HDL-643 que utiliza tecnologia LiDAR. Os rótulos providos por esse sensor são esparsos, apresentando aproximadamente 30\% de pixels válidos em cada imagem. A resolução das imagens da base de dados de estimação de profundidade possuem resolução de 1216 $\times$ 352 \cite{lahiri2024deep}. Um dos exemplos do \textit{dataset} pode ser visualizado na Figura \ref{fig:kittiexample}, em que podemos observar um mapa de profundidade esparso e a imagem RGB correspondente.
+
+\begin{figure}[h]
+    \centering
+    \caption{Exemplo do \textit{dataset} KITTI de estimação de profundidade}
+    \includegraphics[width=.8\textwidth]{fig/example_kitti.png}
+    \caption*{Fonte: \textit{Dataset} KITTI, do trabalho de \citeonline{Geiger2012CVPR}}
+    \label{fig:kittiexample}
+\end{figure}
 
 
 \subsection{SINTEL}
+
+O Sintel é uma base de dados criada a partir de uma projeto aberto de animação CGI (\textit{Computer-Generated Imagery}) chamado \textit{Durian Open Source Movie Project}. Foi elaborado no \textit{software} Blender e contém os arquivos fontes utilizados na criação do filme animado. Em \cite{wulff2012lessons}, os autores adaptaram os arquivos brutos em uma base de dados primariamente utilizada para o problema de visão computacional de estimação de fluxo ótico. Apesar do seu uso primário ser em outra área, ele também contém anotações de profundidade das imagens.
+
+A base de dados contém um total de 35 cenas, cada uma possuindo entre 20 a 50 quadros, totalizando 1628 imagens. A resolução de renderização é de 1024 $\times$ 436 em 24 FPS (\textit{Frames Per Second}). As cenas possuem como características presentes efeitos atmosféricos, efeitos de movimento, desfoque em razão de velocidade e alta variabilidade de ambientes, personagens e ações. É dividido em 1064 quadros para o conjunto de treinamento e 564 para teste, sendo anotadas apenas as imagens de treinamento. 
 
 \subsection{ETH3D}
 
