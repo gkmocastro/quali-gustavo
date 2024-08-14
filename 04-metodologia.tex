@@ -11,7 +11,7 @@ Bases de dados para treinamento ou teste de algoritmos de estimação de profund
 % \textcolor{red}{colocar citações que tem na seção 3 do midas 1}.
 
 Geralmente são empregados sensores e outras tecnologias como \textit{Stereo Matching} e \textit{Structure from Motion} para criar os \textit{datasets} de profundidade, porém, são abordagens muito complexas, custosas, ou inviáveis em algumas situações particulares, por exemplo, obter mapas de profundidades densos a partir de veículos em movimento  \cite{yang2024depthv1}.
-Cada \textit{dataset} possui suas próprias características, problemas e viéses. Dados com informação de profundidade e em alta qualidade são complexos de adquirir, sendo que os melhores conjuntos são utilizados no treinamento dos modelos presentes na literatura \cite{ranftl2020towards}. 
+Cada \textit{dataset} possui suas próprias características, problemas e vieses. Dados com informação de profundidade e em alta qualidade são complexos de adquirir, sendo que os melhores conjuntos são utilizados no treinamento dos modelos presentes na literatura \cite{ranftl2020towards}. 
 
 
 
@@ -21,6 +21,8 @@ Dessa forma, para escolha das bases de dados a serem utilizadas para teste, temo
 % O presente trabalho exige um tipo de base de dados pouco encontrado na literatura, trios de imagem RGB, mapa de profundidade com erros e um outro mapa de profundidade denso e completo. De acordo com \cite{zhang2018deep}, uma das maneiras de se obter esses dados seria capturar imagens com uma câmera RGB-D de baixo custo e alinha-las com outra captura simultânea de um sensor mais preciso, porém essa abordagem é muito custosa, além de que não há disponibilidade de grandes conjuntos para treinamento.
 
 % O presente projeto pretende utilizar como base de dados principal o \textbf{Hypersim}. Um \textit{dataset} para compreensão de cenas baseado em cenas sintéticas fotorrealistas. Contendo 77.400 imagens de 461 cenas \textit{indoor} com pares de RGB e mapas de profundidade calculado deterministicamente, além de outras informações como normais de superfície, rótulos de segmentação e detecção de objetos e entre outros \cite{roberts2021hypersim}.
+% PESQUISA ANTIGA -------------------------------------------------------------------
+
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -47,12 +49,13 @@ Dessa forma, para escolha das bases de dados a serem utilizadas para teste, temo
 
 %% refazer o texto
 
-O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computacional que envolvam estimação de profundidade, segmentação de cenas e reconhecimento de objetos. Possui 1449 pares de imagens RGB e mapas de profundidade densos em diversas cenas \textit{indoor} divididos em 795 para treinamento e 654 para teste \cite{silberman2012indoor}. A resolução das imagens é de 640 $\times$ 480 pixels. O equipamento de aquisição foi o equipamento Microsoft Kinect que utiliza a técnica de emissão de luz estruturada, que produz resultados precisos de informação de profundidade. Além dos pares RGB-D, também é disponibilizado os dados brutos de leitura dos sensores em que é possível encontrar aproximadamente 70\% de pixels com informação válida de profundidade, no entanto, as imagens finais foram processadas utilizando um método de correção, resultando em um mapa denso, como observado na Figura \ref{exnyuv2}. Entre as cenas observadas no \textit{dataset}, podemos citar quartos, cozinhas, sala de aula, banheiro e etc. Além das informações de profundidade, a base de dados provém rótulos de segmentação de objetos e relações de suporte entre eles \cite{lahiri2024deep}.
+O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computacional que envolvam estimação de profundidade, segmentação de cenas e reconhecimento de objetos. Possui 1449 pares de imagens RGB e mapas de profundidade densos em diversas cenas \textit{indoor} divididos em 795 para treinamento e 654 para teste \cite{silberman2012indoor}. A resolução das imagens é de 640 $\times$ 480 pixels. O equipamento de aquisição foi o Microsoft Kinect que utiliza a técnica de ToF ponto a ponto, que produz resultados precisos de informação de profundidade. Além dos pares RGB-D, também são disponibilizados os dados brutos de leitura dos sensores em que é possível encontrar aproximadamente 70\% de pixels com informação válida de profundidade, no entanto, as imagens finais foram processadas utilizando um método de correção, resultando em um mapa denso,  Além das informações de profundidade, a base de dados provém rótulos de segmentação de objetos e relações de suporte \cite{lahiri2024deep}, como observado na Figura \ref{exnyuv2} que ilustra um exemplo. Entre as cenas observadas, podemos citar cômodos comuns de casas como quartos, cozinhas, sala de aula, banheiro e etc \cite{silberman2012indoor}.
 
 \begin{figure}[h]
     \centering
+    \caption{Exemplo do \textit{dataset} NYU Depth v2}
     \includegraphics[width=\textwidth]{fig/example_nyu.png}
-    \caption{Exemplo do dataset NYU Depth v2}
+    \caption*{Fonte: \textit{Dataset} NYU Depth V2, do trabalho de \citeonline{silberman2012indoor}}
     \label{exnyuv2}
 \end{figure}
 
@@ -64,16 +67,17 @@ O \textit{dataset} NYUv2 é um dos mais utilizados em tarefas de visão computac
 
 \subsection{ETH3D}
 
-O ETH3D é uma base de dados geralmente utilizada para reconstrução em vistas múltiplas e \textit{stereo matching}. Contém dados de treinamento com imagens RGB \textit{multiview}, capturadas com câmeras DSLR e \textit{ground truth} de profundidade capturado utilizando um escâner a laser Faro Focus X 330. Oferece três versões de imagens de profundidade, uma correspondente à leitura bruta do sensor (\textit{raw}), outra com \textit{outliers} removidos por trabalho manual e uma ferramenta automática (\textit{clean}) e uma com \textit{outliers} e pontos observados por uma única imagem RGB removidos. A partição de teste não contém \textit{groundtruth}. A base de dados é associada à um desafio aberto ao público. Inclui cenas tanto internas quanto externas, oferecendo um protocolo de avaliação bem variado \cite{lahiri2024deep} \cite{schops2019bad}. 
+O ETH3D é uma base de dados geralmente utilizada para reconstrução em vistas múltiplas e \textit{stereo matching}. Contém dados de treinamento com imagens RGB \textit{multiview}, capturadas com câmeras DSLR (\textit{Digital Single Lens Reflex}) e anotações de profundidade capturadas utilizando um scanner a laser Faro Focus X 330. Oferece três versões de imagens de profundidade, uma correspondente à leitura bruta do sensor (\textit{raw}), outra com valores extremos removidos por trabalho manual e uma ferramenta automática (\textit{clean}) e uma com valores extremos e pontos observados por uma única imagem RGB removidos. A partição de teste não contém anotações. A base de dados é associada à um desafio aberto ao público. Inclui cenas tanto internas quanto externas, oferecendo um protocolo de avaliação bem variado \cite{lahiri2024deep} \cite{schops2019bad}. 
 
 \subsection{DIODE}
 
-O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é uma base de dados para estimação monocular de profundidade e consiste em 8574+25 imagens de ambientes internos e 16.884+446 de ambientes externos para treinamento e teste. Possui resolução de 768 $\times$ 1024 com faixa de distâncias entre 50m e 300m para os ambientes internos e externos respectivamente. O equipamento de aquisição é o escâner a laser Faro Focus S350. Alguns exemplos do \textit{dataset} podem ser visualizados na Figura \ref{exdiode}.
+O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é uma base de dados para estimação monocular de profundidade e consiste em 8574+25 imagens de ambientes internos e 16.884+446 de ambientes externos para treinamento e teste. Possui resolução de 768 $\times$ 1024 com faixa de distâncias entre 50m e 300m para os ambientes internos e externos respectivamente. O equipamento de aquisição é o scanner a laser Faro Focus S350. Alguns exemplos do \textit{dataset} podem ser visualizados na Figura \ref{exdiode} \cite{diode_dataset}.
 
 \begin{figure}[h]
     \centering
+    \caption{Exemplo do \textit{dataset} DIODE}
     \includegraphics[width=\textwidth]{fig/example_diode.png}
-    \caption{Exemplo do dataset DIODE}
+    \caption*{Fonte: \textit{Dataset} DIODE, do trabalho de \citeonline{diode_dataset}}
     \label{exdiode}
 \end{figure}
 
@@ -82,11 +86,11 @@ O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é u
 \section{Protocolo de Avaliação}
 
 
-Two types of metrics used for evaluation are the depth accuracy metric and the depth error metric. Depth accuracy
+\textcolor{red}{Two types of metrics used for evaluation are the depth accuracy metric and the depth error metric. Depth accuracy
 metrics measure the accuracy as the percentage of pixels that exceed a predeined threshold error. Depth error
 metrics, on the other hand, provide the deviation of the estimated depth from the expected depth. A model
 performs better than others if the results for accuracy metrics are high or the results for error metrics are low.
-The evaluation metrics commonly used in the literature are summarized in Table 4 (Section G in Appendix A). - rajapaksha2024deep
+The evaluation metrics commonly used in the literature are summarized in Table 4 (Section G in Appendix A). - rajapaksha2024deep}
 
 
 \section{Método de Transformação de Intensidades (pós-processamento)}
@@ -98,8 +102,9 @@ O método proposto por este trabalho consiste em uma transformação de intensid
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{fig/diagram_normalization_white.png}
     \caption{Diagrama do método de transferência de domínio}
+    \includegraphics[width=\textwidth]{fig/diagram_normalization_white.png}
+    \caption*{Elaborado pelo autor.}
     \label{posproc}
 \end{figure}
 
@@ -134,7 +139,7 @@ Para performar a detecção 3D guiada profundidade, o autor apresentou a arquite
     \centering
     \caption{Arquitetura da rede D4LCN. }
     \includegraphics[width=\textwidth]{fig/d4lcn.png}
-    \footnotesize{Fonte: \citeonline{ding2020learning}}
+    \caption*{Fonte: \cite{ding2020learning}}
     \label{fig:d4lcn}
 \end{figure}
 
