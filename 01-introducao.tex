@@ -7,7 +7,16 @@ Informação de profundidade é uma das representações mais úteis para o ente
 
 % \textit{Simultaneos Localization and Mapping} (SLAM) \cite{hu2012robust}
 
-Os mapas de profundidade representam as distâncias de cada ponto (ou pixel) numa cena física em relação ao eixo do dispositivo de captura. Podem ser representados por imagens em escala de cinza, com as cores dos pixels sendo proporcionais à distância, com cinzas mais claros para objetos mais próximos e tons mais escuros para pontos mais afastados (e vice-versa) \cite{dourado2020multi}.
+Os mapas de profundidade representam as distâncias de cada ponto (ou pixel) numa cena física em relação ao eixo do dispositivo de captura. Podem ser representados por imagens em escala de cinza, com as cores dos pixels sendo proporcionais à distância, com cinzas mais claros para objetos mais próximos e tons mais escuros para pontos mais afastados (e vice-versa) \cite{dourado2020multi}. A Figura \ref{mapintro} mostra um exemplo com uma imagem RGB de uma cena, um mapa de profundidade em escala de cinza e o mesmo mapa colorizado para visualização.
+
+\begin{figure}[h]
+    \centering   
+    \caption{Exemplo de Mapa de Profundidade.}
+    \includegraphics[width=\textwidth]{fig/example_depth.png}
+    \caption*{Fonte: Dataset NYU Depth V2, do trabalho de \citeonline{silberman2012indoor}}
+    \label{mapintro}
+\end{figure}
+
 
 % \begin{figure}[h]
 %     \centering
@@ -33,7 +42,7 @@ Para capturar tais imagens geralmente são empregadas câmeras RGB-D, que podem 
 
 \textbf{Problemática} 
 
-Garantir a correta representação dos mapas em escala de pixel é de considerável importância para as tarefas que dependem de profundidade e que requerem um alto grau de segurança e confiabilidade dos dados, como veículos autônomos ou navegação de drones. A tecnologia LiDAR é a alternativa com implementação mais confiável entre as que foram citadas, no entanto, ressalta-se que nem o LiDAR e nem câmeras RGB-D convencionais produzem mapas completos e densos. No caso do LiDAR, são produzidos mapas esparsos (approx. 95\% de esparsidade) e no caso de câmeras RGB-D ou câmeras ToF são produzidos mapas com partes faltantes em determinadas superfícies ou bordas \cite{hu2012robust}. 
+Garantir a correta representação dos mapas em escala de pixel é de considerável importância para as tarefas que dependem de profundidade e que requerem um alto grau de segurança e confiabilidade dos dados, como veículos autônomos ou navegação de drones por exemplo. A tecnologia LiDAR é a alternativa com implementação mais confiável entre as que foram citadas, no entanto, ressalta-se que nem o LiDAR e nem câmeras RGB-D convencionais produzem mapas completos e densos. No caso do LiDAR, são produzidos mapas esparsos (approx. 95\% de esparsidade), além de possuir alto custo financeiro e no caso de câmeras RGB-D ou sensores ToF são produzidos mapas com partes faltantes em determinadas superfícies ou bordas \cite{hu2012robust}. 
 
 
 
@@ -42,12 +51,12 @@ Garantir a correta representação dos mapas em escala de pixel é de considerá
 
 
 
-Considerando as limitações impostas por métodos ativos de aquisição de profundidade, surge a possibilidade de inferir um mapa de profundidade denso e completo de uma cena a partir de uma ou mais imagens RGB, processo conhecido como estimação de profundidade (\textit{Depth Estimation - DE}) \cite{rajapaksha2024deep}. Quando duas imagens de câmeras diferentes são utilizadas para obter-se a informação de profundidade, denomina-se \textit{Stereo Matching (SM)}. No entanto, métodos baseados em imagens \textit{stereo} requerem processos complexos de calibração e alinhamento \cite{dong2022towards}.
+Considerando as limitações impostas por métodos ativos de aquisição de profundidade, surge a possibilidade de inferir um mapa de profundidade denso e completo de uma cena a partir de uma ou mais imagens RGB, processo conhecido como estimação de profundidade (\textit{Depth Estimation - DE}) \cite{rajapaksha2024deep}. Quando duas imagens de câmeras diferentes são utilizadas para obter-se a informação de profundidade, denomina-se \textit{Stereo Matching (SM)}. No entanto, métodos baseados em imagens estéreo requerem processos complexos de calibração e alinhamento \cite{dong2022towards}.
 
 
-O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos \cite{spencer2024third} \cite{rajapaksha2024deep}. 
+Uma das formas de gerar um mapa de profundidade de forma prática é utilizando imagens geradas por câmeras monoculares. O problema da estimação monocular de profundidade (\textit{Monocular Depth Estimation - MDE}) tem por objetivo inferir o mapa de profundidade através de uma única imagem RGB. Esse problema é considerado mal-posto devido à ausência de informação geométrica na projeção da cena 3D para a imagem 2D. No entanto, os avanços nas tecnologias de \textit{Deep Learning - DL} e visão computacional tornaram factível e conveniente o uso de MDE para estimar mapas de profundidade densos e completos \cite{spencer2024third} \cite{rajapaksha2024deep}. 
 
-Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando toda a miríade de técnicas e metodologias dentro do universo do aprendizado profundo, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
+Ao longo dos anos, houveram diversas pesquisas científicas abordando o tema de estimação monocular de profundidade utilizando um vasto número de técnicas e metodologias dentro do universo do aprendizado profundo, empregando desde redes neurais convolucionais \cite{kopf2021robust}, estruturas \textit{encoder-decoder} \cite{godard2019digging}, mistura de bases de dados em grande escala em modos diferentes \cite{lasinger2019towards}, transformadores de visão \cite{birkl2023midas}, modelos de difusão \cite{ke2024repurposing}, e treinamento utilizando dados reais pseudo-rotulados em larga escala \cite{yang2024depth}. 
 
 Neste cenário, este trabalho propõe uma análise comparativa entre os diversos modelos de estimação monocular de profundidade relativa baseados em aprendizado profundo através da abordagem quantitativa, utilizando métricas e \textit{benchmarks} presentes na literatura, abordagem qualitativa e através de uma aplicação. 
 
@@ -77,21 +86,29 @@ Devido aos melhoramentos possíveis nas aplicações que utilizam informação d
 
 
 \subsection{Objetivo Geral}
-Este trabalho possui como objetivo geral a análise comparativa de estimadores monoculares de profundidade capazes de produzir informação de profundidade de alta qualidade para imagens sob quaisquer circunstâncias.
+Este trabalho possui como objetivo geral a análise comparativa de estimadores monoculares de profundidade capazes de produzir informação de profundidade densos para qualquer imagem.
 
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-    \item Estudo e escolha dos datasets que contenham imagens apropriadas para teste.
-    \item Estudo de modelos de estimação monocular de profundidade relativa baseados em aprendizado profundo do estado da arte.
-    \item Análise e escolha entre os modelos estudados para implementação e testes visando eficiência, rapidez, robustez ou outros parâmetros a escolher.
-    \item Avaliação de desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
-    \item Implementação de método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
-    \item Avaliação qualitativa dos resultados.
-    \item Implementação e avaliação de aplicação com os mapas de profundidade gerados a partir dos estimadores do estado da arte.
+    \item Estudar e escolher \textit{datasets} que contenham imagens apropriadas para teste considerando variedade de ambientes e métodos de captura.
+    \item Estudar modelos de estimação monocular de profundidade relativa baseados em aprendizado profundo do estado da arte.
+    \item Analisar e escolher entre os modelos estudados para implementação e testes visando eficiência, rapidez, robustez ou outros parâmetros a escolher.
+    \item Avaliar o desempenho perante métricas utilizadas na literatura para comparação entre os modelos no espaço relativo e métrico.
+    \item Implementar método de pós-processamento para transferência do domínio relativo para métrico baseado em transformação de intensidade.
+    \item Avaliar qualitativamente os resultados.
+    \item Implementar e avaliar aplicações com os mapas de profundidade gerados a partir dos estimadores do estado da arte.
     
 \end{itemize}
 
 
 
 \section{Resultados Esperados}
+
+Este trabalho pretende realizar uma comparação quantitativa e qualitativa entre mapas gerados por estimadores monoculares de profundidade, portanto, almeja-se evidenciar as qualidades dos modelos através das métricas de avaliação, expondo suas vantagens em relação às outras técnicas de estimação e captura de informação de profundidade. 
+
+Além disso, espera-se explorar as técnicas de transformação de intensidades para transferir mapas relativos inferidos pelos modelos do domínio relativo para o métrico, mensurando sua aplicabilidade por meio da comparação com estimadores métricos. 
+
+Dado que os modelos estimadores de profundidade relativa do estado da arte fornecem mapas de profundidades precisos e detalhados, espera-se que as aplicações que utilizam informação de profundidade tenham o seu desempenho melhorado com o emprego de mapas melhores.
+
+Os resultados esperados deste trabalho servirão como base para futuras pesquisas aplicadas do laboratório PAVIC (Pesquisa Aplicada em Visão e Inteligência Computacional) nas temáticas relacionadas, por exemplo, navegação robótica, realidade aumentada e outras técnicas que utilizem informação tridimensional.

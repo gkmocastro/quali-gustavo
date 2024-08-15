@@ -1,9 +1,6 @@
 
 \chapter{Materiais e Métodos}
 
-Para avaliar os modelos de estimação de profundidade, será utilizado o protocolo de \textit{zero-shot cross-dataset transfer}, i.e. realizar os testes e métricas em bases de dados que não compuseram os conjuntos de treinamentos dos modelos analisados. A performance em \textit{cross-dataset} é considerada uma aproximação mais fiel da performance em mundo real em uma aplicação, pois os conjuntos de testes relativos aos conjuntos utilizados no treinamento podem refletir os mesmos vieses e situações \cite{ranftl2020towards}.
-
-
 \section{Datasets}
 
 Bases de dados para treinamento ou teste de algoritmos de estimação de profundidade consistem em imagens RGB de uma cena e sua anotação correspondente em profundidade. Ao longo do tempo, diversos \textit{datasets} foram propostos para este fim com variações em formatos de anotações, tipos de cena (interior ou exterior), métodos de captura, qualidade, resolução e tamanho.
@@ -121,16 +118,64 @@ O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é u
     \label{exdiode}
 \end{figure}
 
-\section{Modelos Escolhidos}
+% \section{Modelos Escolhidos}
+
+% \subsection{Marigold}
+
+% Os autores \cite{ke2024repurposing} apresentaram o Marigold, um modelo de difusão latente baseado em \textit{Stable Diffusion} (SD). Modelos fundacionais de visão computacional, como o SD, são treinados com dados em larga escala e em uma vasta gama de domínios. O seu funcionamento e baseado na premissa de que a tarefa de MDE possui como pilar a plena compreensão das representações visuais do mundo, portanto, é possível aproveitar o conhecimento prévio de um modelo fundacional de difusão para transforma-lo em um estimador de profundidade. Desse modo é proposto um protocolo de ajuste fino (ou do inglês, \textit{fine-tuning}) que objetiva a adaptação de um modelo de difusão latente para um modelo de MDE, mostrado na Figura \ref{marifino}.
+
+% \begin{figure}[h]
+%     \centering
+%     \caption{Protocolo de ajuste fino do Marigold.}
+%     \includegraphics[width=.8\textwidth]{fig/mariouro.png}
+%     \caption*{Fonte: \citeonline{ke2024repurposing}}
+%     \label{marifino}
+% \end{figure}
+
+% Um VAE (\textit{Variational Auto Encoder}) pré-treinado, proveniente do SD, é empregado para projetar a imagem RGB e o mapa de profundidade em um espaço latente de menor dimensionalidade. O processo de ajuste fino se concentra na componente U-Net, otimizando uma função objetivo. Essa função compara o código latente obtido a partir do ruído de difusão com a representação latente gerada pela U-Net após o processo de remoção de ruído (\textit{denoising}). É importante destacar que apenas os parâmetros da U-Net são ajustados durante o treinamento. 
+
+% O processo de inferência funciona de acordo com a Figura \ref{mariinfe}. Dado uma imagem RGB de entrada, ela é processada com por meio do mesmo VAE utilizado no \textit{fine-tuning}) e concatenada com o ruído já no espaço latente. Em seguida, passa pela U-Net para remover o ruído a cada iteração. Depois da execução de $T$ passos de difusão, a imagem é descodificada pelo VAE em uma imagem de 3 canais, que representa o mapa de profundidade final. 
+
+% \begin{figure}[h]
+%     \centering
+%     \caption{Processo de inferência do Marigold.}
+%     \includegraphics[width=.8\textwidth]{fig/mariouro2.png}
+%     \caption*{Fonte: \citeonline{ke2024repurposing}}
+%     \label{mariinfe}
+% \end{figure}
 
 \section{Protocolo de Avaliação}
 
+Para avaliar os modelos de estimação de profundidade, será utilizado o protocolo de \textit{zero-shot cross-dataset transfer}, i.e. realizar os testes e métricas em bases de dados que não compuseram os conjuntos de treinamentos dos modelos analisados. A performance em \textit{cross-dataset} é considerada uma aproximação mais fiel da performance em mundo real em uma aplicação, pois os conjuntos de testes relativos aos conjuntos utilizados no treinamento podem refletir os mesmos vieses e situações \cite{ranftl2020towards}.
 
-\textcolor{red}{Two types of metrics used for evaluation are the depth accuracy metric and the depth error metric. Depth accuracy
-metrics measure the accuracy as the percentage of pixels that exceed a predeined threshold error. Depth error
-metrics, on the other hand, provide the deviation of the estimated depth from the expected depth. A model
-performs better than others if the results for accuracy metrics are high or the results for error metrics are low.
-The evaluation metrics commonly used in the literature are summarized in Table 4 (Section G in Appendix A). - rajapaksha2024deep}
+Há dois tipos de métricas usadas para avaliação de mapas de profundidade, a acurácia de profundidade e o erro métrico de profundidade. Apesar do problema de MDE ser caracterizado como uma tarefa de regressão, é possível calcular a sua acurácia através da porcentagem de pixels cujo erro exceda um determinado limite. Essa métrica, também chamada de Acurácia Relativa (\textit{Relative Accuracy Threshold} - $\delta$) é definida pela equação \ref{deltaeq}.
+
+\begin{equation}
+    \delta_t = \text{max}\left( \frac{d_i}{\hat{d_i}}, \frac{\hat{d_i}}{d_i} \right) < 1.25^t \qquad \text{com } t \> \epsilon \> (1,2,3)
+    \label{deltaeq}
+\end{equation}
+
+As métricas relacionadas a erro métrico de profundidade buscam calcular o desvio numérico da profundidade estimada em relação ao esperado, sendo padrão em problemas de regressão. Nesse tipo, as métricas mais presentes na literatura de estimadores monoculares de profundidade são o Erro Absoluto Relativo (\textit{Absolute Relative Error} - AbsRel) e a Raiz do Erro Médio Quadrático (\textit{Root Mean Squared Error} - RMSE), definidos respectivamente pelas equações \ref{absrel} e \ref{rmse}.
+
+
+\begin{equation}
+    \text{AbsRel} =\frac{1}{N} \sum_{i \epsilon N} (\frac{\left| d_i - \hat{d_i} \right|}{\hat{d_i}})
+ \label{absrel}
+\end{equation}
+
+\begin{equation}
+    \text{RMSE} = \sqrt{\frac{1}{N} \sum_{i \epsilon N} (\left| d_i - \hat{d_i} \right|})^2
+ \label{rmse}
+\end{equation}
+
+Outro fator importante no protocolo de avaliação de mapas de profundidade é que os modelos de MDE geralmente inferem um mapa relativo, ou seja, os números presentes em cada pixel são correlacionados com a distância real por um fator desconhecido. Dessa forma, seguindo o protocolo com invariância afim presente em \cite{ke2024repurposing}, o mapa de profundidade predito $\hat{d}$ que será comparado com o mapa verdadeiro $d$ precisa ser alinhado por um fator de escala $s$ e deslocamento $t$, seguindo a equação \ref{align}.
+
+\begin{equation}
+    \textbf{a} = \textbf{m} \times s + t
+    \label{align}
+\end{equation}
+
+O alinhamento do mapa de profundidade será feito utilizando o método dos mínimos quadrados.
 
 
 \section{Método de Transformação de Intensidades (pós-processamento)}
@@ -163,9 +208,9 @@ Para avaliar os mapas de profundidade gerado pelos modelos do estado da arte, se
     \item Ter o seu desempenho mensurável através de métricas. 
 \end{itemize}
 
-\subsection{Detecção de objetos 3D}
+\subsection{Aplicação: Detecção de objetos 3D}
 
-Uma das aplicações escolhidas foi a detecção de objetos 3D, que é uma tarefa fundamental das área de veículos autônomos. A percepção automática do ambiente ao redor do veículo ajuda-o a entender a situação para tomada de decisões e navegação. De acordo com \citeonline{ding2020learning}, um dos fatores limitantes da performance de métodos de detecção 3D é a acurácia dos mapas de profundidade. Dessa forma, o método apresentado pelo autor será utilizado como \textit{benchmark} para avaliação dos mapas gerados pelos estimadores monoculares do estado da arte.
+Uma das aplicações escolhidas foi a detecção de objetos 3D, que é uma tarefa fundamental da área de veículos autônomos. A percepção automática do ambiente ao redor do veículo ajuda-o a entender a situação para tomada de decisões e navegação. De acordo com \citeonline{ding2020learning}, um dos fatores limitantes da performance de métodos de detecção 3D é a acurácia dos mapas de profundidade. Dessa forma, o método apresentado pelo autor será utilizado como \textit{benchmark} para avaliação dos mapas gerados pelos estimadores monoculares do estado da arte.
 
 Em \citeonline{ding2020learning} é apresentado uma rede neural \textit{Depth-guided Dynamic Depthwise-Dilated Local Convolutional Network} (D4LCN). A proposta do trabalho é gerar filtros convolucionais (kernel) dinâmicos e dilatados, com o processo sendo guiado a partir de mapas de profundidade. Esses filtros são aplicados nas imagens RGB em escala de pixel e de canal, fazendo assim a conexão entre as características bidimensionais e tridimensionais.
 

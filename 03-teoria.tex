@@ -310,7 +310,7 @@ Compondo a lista de métodos passivos, a estimação de profundidade monocular r
     \label{fig:monoestim}
 \end{figure}
 
-Segundo \citeonline{mertan2022single} um dos desafios que são intrínsecos ao problema de estimação monocular de profundidade é a ambiguidade. A partir de uma única imagem RGB podem haver um número muito grande de possíveis resultados 3D, ou seja, é caracterizado um problema de mapeamento onde cada entrada pode gerar muitas saídas. Por isso é considerado um problema mal-posto, ou do inglês, \textit{ill posed problem}. O problema da ambiguidade pode ser ilustrado pela Figura \ref{fig:ambiguity}, em que a cadeira é percebida na primeira imagem como mais próxima do que realmente é, e quando posta em comparação com o tamanho médio de uma pessoa, sua distância real fica clara. A percepção humana de profundidade baseia-se principalmente no conhecimento prévio dos tamanhos dos objetos. Ao observar uma imagem, o sistema visual humano estima a cena 3D mais provável entre inúmeras possibilidades geométricas. 
+Segundo \citeonline{mertan2022single} um dos desafios que são intrínsecos ao problema de estimação monocular de profundidade é a ambiguidade. A partir de uma única imagem RGB podem haver inúmeros possíveis resultados 3D, ou seja, é caracterizado um problema de mapeamento onde cada entrada pode gerar muitas saídas. Por isso é considerado um problema mal-posto, ou do inglês, \textit{ill posed problem}. O problema da ambiguidade pode ser ilustrado pela Figura \ref{fig:ambiguity}, em que a cadeira é percebida na primeira imagem como mais próxima do que realmente é, e quando posta em comparação com o tamanho médio de uma pessoa, sua distância real fica clara. A percepção humana de profundidade baseia-se principalmente no conhecimento prévio dos tamanhos dos objetos. Ao observar uma imagem, o sistema visual humano estima a cena 3D mais provável entre inúmeras possibilidades geométricas. 
 
 
 \begin{figure}[h!]
@@ -321,3 +321,5 @@ Segundo \citeonline{mertan2022single} um dos desafios que são intrínsecos ao p
     \label{fig:ambiguity}
 \end{figure}
 
+
+De acordo com \citeonline{ke2024repurposing} um grau elevado de compreensão espacial e contextual é necessário para identificar apropriadamente a geometria de cenas, portanto, é evidente que os avanços na temática da inteligência artificial tenha acompanhado o salto de performance dessa tarefa. Atualmente, a tarefa de estimação monocular de profundidade é apresentada como um problema de tradução imagem para imagem baseado em redes neurais com aprendizado de maneira supervisionada por meio de coleções de pares de imagem RGB e mapas de profundidade devidamente alinhados.  
