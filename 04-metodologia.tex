@@ -118,44 +118,20 @@ O \textit{dataset} DIODE (\textit{Dense Indoor and Outdoor Depth Dataset}), é u
     \label{exdiode}
 \end{figure}
 
-% \section{Modelos Escolhidos}
 
-% \subsection{Marigold}
-
-% Os autores \cite{ke2024repurposing} apresentaram o Marigold, um modelo de difusão latente baseado em \textit{Stable Diffusion} (SD). Modelos fundacionais de visão computacional, como o SD, são treinados com dados em larga escala e em uma vasta gama de domínios. O seu funcionamento e baseado na premissa de que a tarefa de MDE possui como pilar a plena compreensão das representações visuais do mundo, portanto, é possível aproveitar o conhecimento prévio de um modelo fundacional de difusão para transforma-lo em um estimador de profundidade. Desse modo é proposto um protocolo de ajuste fino (ou do inglês, \textit{fine-tuning}) que objetiva a adaptação de um modelo de difusão latente para um modelo de MDE, mostrado na Figura \ref{marifino}.
-
-% \begin{figure}[h]
-%     \centering
-%     \caption{Protocolo de ajuste fino do Marigold.}
-%     \includegraphics[width=.8\textwidth]{fig/mariouro.png}
-%     \caption*{Fonte: \citeonline{ke2024repurposing}}
-%     \label{marifino}
-% \end{figure}
-
-% Um VAE (\textit{Variational Auto Encoder}) pré-treinado, proveniente do SD, é empregado para projetar a imagem RGB e o mapa de profundidade em um espaço latente de menor dimensionalidade. O processo de ajuste fino se concentra na componente U-Net, otimizando uma função objetivo. Essa função compara o código latente obtido a partir do ruído de difusão com a representação latente gerada pela U-Net após o processo de remoção de ruído (\textit{denoising}). É importante destacar que apenas os parâmetros da U-Net são ajustados durante o treinamento. 
-
-% O processo de inferência funciona de acordo com a Figura \ref{mariinfe}. Dado uma imagem RGB de entrada, ela é processada com por meio do mesmo VAE utilizado no \textit{fine-tuning}) e concatenada com o ruído já no espaço latente. Em seguida, passa pela U-Net para remover o ruído a cada iteração. Depois da execução de $T$ passos de difusão, a imagem é descodificada pelo VAE em uma imagem de 3 canais, que representa o mapa de profundidade final. 
-
-% \begin{figure}[h]
-%     \centering
-%     \caption{Processo de inferência do Marigold.}
-%     \includegraphics[width=.8\textwidth]{fig/mariouro2.png}
-%     \caption*{Fonte: \citeonline{ke2024repurposing}}
-%     \label{mariinfe}
-% \end{figure}
 
 \section{Protocolo de Avaliação}
 
 Para avaliar os modelos de estimação de profundidade, será utilizado o protocolo de \textit{zero-shot cross-dataset transfer}, i.e. realizar os testes e métricas em bases de dados que não compuseram os conjuntos de treinamentos dos modelos analisados. A performance em \textit{cross-dataset} é considerada uma aproximação mais fiel da performance em mundo real em uma aplicação, pois os conjuntos de testes relativos aos conjuntos utilizados no treinamento podem refletir os mesmos vieses e situações \cite{ranftl2020towards}.
 
-Há dois tipos de métricas usadas para avaliação de mapas de profundidade, a acurácia de profundidade e o erro métrico de profundidade. Apesar do problema de MDE ser caracterizado como uma tarefa de regressão, é possível calcular a sua acurácia através da porcentagem de pixels cujo erro exceda um determinado limite. Essa métrica, também chamada de Acurácia Relativa (\textit{Relative Accuracy Threshold} - $\delta$) é definida pela equação \ref{deltaeq}.
+Há dois tipos de métricas usadas para avaliação de mapas de profundidade, a acurácia de profundidade e o erro métrico de profundidade. Apesar do problema de MDE ser caracterizado como uma tarefa de regressão, é possível calcular a sua acurácia através da porcentagem de pixels cujo erro exceda um determinado limite. Essa métrica, também chamada de acurácia relativa a um limiar (\textit{Relative Accuracy Threshold} - $\delta$) é definida pela equação \ref{deltaeq}.
 
 \begin{equation}
     \delta_t = \text{max}\left( \frac{d_i}{\hat{d_i}}, \frac{\hat{d_i}}{d_i} \right) < 1.25^t \qquad \text{com } t \> \epsilon \> (1,2,3)
     \label{deltaeq}
 \end{equation}
 
-As métricas relacionadas a erro métrico de profundidade buscam calcular o desvio numérico da profundidade estimada em relação ao esperado, sendo padrão em problemas de regressão. Nesse tipo, as métricas mais presentes na literatura de estimadores monoculares de profundidade são o Erro Absoluto Relativo (\textit{Absolute Relative Error} - AbsRel) e a Raiz do Erro Médio Quadrático (\textit{Root Mean Squared Error} - RMSE), definidos respectivamente pelas equações \ref{absrel} e \ref{rmse}.
+As métricas relacionadas a erro métrico de profundidade buscam calcular o desvio numérico da profundidade estimada em relação ao esperado, sendo padrão em problemas de regressão. Nesse tipo, as métricas mais presentes na literatura de estimadores monoculares de profundidade são o Erro Absoluto Relativo (\textit{Absolute Relative Error} - AbsRel) e a raiz do erro médio quadrático (\textit{Root Mean Squared Error} - RMSE), definidos respectivamente pelas equações \ref{absrel} e \ref{rmse}.
 
 
 \begin{equation}
@@ -224,7 +200,7 @@ Para performar a detecção 3D guiada profundidade, o autor apresentou a arquite
     \centering
     \caption{Arquitetura da rede D4LCN. }
     \includegraphics[width=\textwidth]{fig/d4lcn.png}
-    \caption*{Fonte: \cite{ding2020learning}}
+    \caption*{Fonte: \citeonline{ding2020learning}}
     \label{fig:d4lcn}
 \end{figure}
 
@@ -232,4 +208,8 @@ Como métrica de avaliação, seguindo o trabalho de \citeonline{ding2020learnin
 
 \section{Considerações Metodológicas}
 
-sdfsadfasdf
+A metodologia do presente trabalho consiste em três pilares. O primeiro é a comparação entre estimadores de profundidade através de métricas presentes na literatura com o fim de compreender e explorar as capacidades do estado da arte da área e evidenciar suas vantagens e desvantagens em relação a métodos tradicionais. Apesar dos modelos a serem utilizados ainda não terem sido escolhidos, o Apêndice A contém um breve estudo de um modelo estimador baseado em difusão latente, proposto por \citeonline{ke2024repurposing}.
+
+O segundo pilar consiste na aplicação de uma metodologia baseada em processamento digital de imagens para transferir o resultado de estimadores relativos para o espaço métrico, ou seja, com os valores numéricos em unidade de metros. O objetivo é mostrar que com dados auxiliares provenientes de sensores é possível obter distâncias em unidades métricas sem a necessidade de ajuste fino dos modelos, pois esse processo geralmente causa uma adaptação à domínios específicos. 
+
+Por fim, almeja-se comparar os mapas gerados por métodos do estado da arte por meio do desempenho de aplicações práticas, desse modo, mensurando seu comportamento em situações de mundo real. Até o presente momento, a seleção de aplicações seguindo os critérios estabelecidos não foi concluída, havendo somente o estudo de métodos de detecção 3D aplicados a veículos autônomos.

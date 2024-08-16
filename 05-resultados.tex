@@ -1,12 +1,86 @@
 
-\chapter{Resultados e Discussões}
+\chapter{Resultados Preliminares e Discussões}
 
-\section{Resultados Preliminares}
+Como resultados preliminares deste trabalho até o presente momento há o uso do modelo \textit{Depth Anything v1} \cite{yang2024depthv1} para estimar a profundidade em alguns exemplos do \textit{dataset} Nyu Depth V2, exibidos nas Figuras \ref{ex1}, \ref{ex2}, \ref{ex127} e \ref{ex1000}. Como se trata de um experimento preliminar, foi utilizada resolução de 256 $\times$ 256.
 
-
-\section{Resultados Esperados}
-
+Podemos observar que o mapa inferido pelo modelo de estimação de profundidade não possui as tonalidades da escala de cinza de acordo com o verdadeiro proveniente da base de dados. No entanto, após a aplicação da transformação de intensidade, é obtido um mapa visualmente próximo do esperado. Um fato a ser observado é também o fato das transformações de intensidades não serem aproximadamente lineares, havendo a necessidade de correção de proporção em determinadas regiões na quantização dos mapas. Um caso particular ocorre nas Figuras \ref{ex127transf} e \ref{ex1000transf}, em que a função obtida não possui crescimento monotônico, portanto, são necessário ajustes no algoritmo desenvolvido. Por fim, também é visualizado que os mapas de profundidade corrigidos com o método proposto possuem característica de acurácia métrica e definição dos objetos em termos visuais.
 
 
 
 
+\begin{figure}[H]
+    \centering
+    \caption{\textbf{Exemplo 1}. (a) Imagem RGB, (b) Resultado relativo do modelo, (c) Transformação de intensidades de transferência de domínio relativo para métrico, (d) Em ordem: Mapa de profundidade do \textit{dataset}, mapa de profundidade do \textit{dataset} corrigido e mapa de profundidade estimado e corrigido com transferência de domínio.}
+    \subfigure[\label{ex1rgb}]{
+    \includegraphics[width=.3\textwidth]{fig/ex1rgb.png}
+    }
+    \subfigure[\label{ex1estim}]{
+        \includegraphics[width=.3\textwidth]{fig/ex1estim.png}
+        } % end subfigure % dá um espaço entre as duas figuras.
+    \subfigure[\label{ex1transf}]{
+    \includegraphics[width=.3\textwidth]{fig/ex1transf.png}
+    } % end subfigure
+    \subfigure[\label{ex1geral}]{
+    \includegraphics[width=\textwidth]{fig/ex1geral.png}
+    } 
+    \label{ex1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{\textbf{Exemplo 2}. (a) Imagem RGB, (b) Resultado relativo do modelo, (c) Transformação de intensidades de transferência de domínio relativo para métrico, (d) Em ordem: Mapa de profundidade do \textit{dataset}, mapa de profundidade do \textit{dataset} corrigido e mapa de profundidade estimado e corrigido com transferência de domínio.}
+    \subfigure[\label{ex2rgb}]{
+    \includegraphics[width=.3\textwidth]{fig/ex2rgb.png}
+    }
+    \subfigure[\label{ex2estim}]{
+        \includegraphics[width=.3\textwidth]{fig/ex2estim.png}
+        } % end subfigure
+    \subfigure[\label{ex2transf}]{
+    \includegraphics[width=.3\textwidth]{fig/ex2transf.png}
+    } % end subfigure
+
+    \subfigure[\label{ex2geral}]{
+    \includegraphics[width=\textwidth]{fig/ex2geral.png}
+    } 
+    \label{ex2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{\textbf{Exemplo 3}. (a) Imagem RGB, (b) Resultado relativo do modelo, (c) Transformação de intensidades de transferência de domínio relativo para métrico, (d) Em ordem: Mapa de profundidade do \textit{dataset}, mapa de profundidade do \textit{dataset} corrigido e mapa de profundidade estimado e corrigido com transferência de domínio.}
+    \subfigure[\label{ex127rgb}]{
+    \includegraphics[width=.3\textwidth]{fig/ex127rgb.png}
+    } % end subfigure
+    \subfigure[\label{ex127estim}]{
+    \includegraphics[width=.3\textwidth]{fig/ex127estim.png}
+    }
+    \subfigure[\label{ex127transf}]{
+    \includegraphics[width=.3\textwidth]{fig/ex127transf.png}
+    } % end subfigure
+
+    \subfigure[\label{ex127geral}]{
+    \includegraphics[width=\textwidth]{fig/ex127geral.png}
+    } 
+    \label{ex127}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{\textbf{Exemplo 4}. (a) Imagem RGB, (b) Resultado relativo do modelo, (c) Transformação de intensidades de transferência de domínio relativo para métrico, (d) Em ordem: Mapa de profundidade do \textit{dataset}, mapa de profundidade do \textit{dataset} corrigido e mapa de profundidade estimado e corrigido com transferência de domínio.}
+    \subfigure[\label{ex1000rgb}]{
+    \includegraphics[width=.3\textwidth]{fig/ex1000rgb.png}
+    } % end subfigure
+    \subfigure[\label{ex1000estim}]{
+        \includegraphics[width=.3\textwidth]{fig/ex1000estim.png}
+        }
+    \subfigure[\label{ex1000transf}]{
+    \includegraphics[width=.3\textwidth]{fig/ex1000transf.png}
+    } % end subfigure
+    \subfigure[\label{ex1000geral}]{
+    \includegraphics[width=\textwidth]{fig/ex1000geral.png}
+    } 
+    \label{ex1000}
+\end{figure}
+
+
+    
